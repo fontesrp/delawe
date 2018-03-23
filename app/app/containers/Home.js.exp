@@ -1,0 +1,116 @@
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import {
+    ScrollView,
+    View,
+    Text,
+    TextInput,
+    Image,
+    TouchableHighlight,
+    StyleSheet
+} from "react-native";
+
+class Home extends Component {
+
+    constructor(props) {
+
+        super(props);
+
+        this.state = {
+            ingredientsInput: "",
+            searching: false
+        };
+    }
+
+    searchOnPress() {
+
+        this.setState({
+            searching: true
+        });
+
+        this
+            .props
+            .fetchRecipes(this.state.ingredientsInput)
+            .then(() => this.setState({
+                searching: false
+            }));
+    }
+
+    recipes() {
+        return Object.keys(this.props.searchedRecipes).map(key => this.props.searchedRecipes[key]);
+    }
+
+    render() {
+
+        let recipes = [];
+
+        if (!this.state.searching) {
+            recipes = this.recipes().map(recipe => (
+                <View key={recipe.title}>
+                    <Image source={{uri: recipe.thumbnail}} style={styles.resultImage} />
+                    <Text style={styles.resultText}>{recipe.title}</Text>
+                </View>
+            ));
+        }
+
+        return (
+            <View style={styles.scene}>
+                <View style={styles.searchSection}>
+                    <TextInput
+                        style={styles.searchInput}
+                        returnKeyType="search"
+                        placeholder="Ingredients (comma delimited)"
+                        onChangeText={ingredientsInput => this.setState({ ingredientsInput })}
+                        value={this.state.ingredientsInput}
+                    />
+                    <TouchableHighlight onPress={this.searchOnPress.bind(this)} style={styles.searchButton}>
+                        <Text>Fetch recipes</Text>
+                    </TouchableHighlight>
+                </View>
+                <ScrollView style={styles.scrollSection}>
+                    {recipes}
+                </ScrollView>
+                {(this.state.searching) ? <Text>Searching...</Text> : null}
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    scene: {
+        flex: 1,
+        marginTop: 20
+    },
+    searchSection: {
+        height: 30,
+        borderBottomColor: "#000",
+        borderBottomWidth: 1,
+        padding: 5,
+        flexDirection: "row"
+    },
+    searchInput: {
+        flex: 0.7
+    },
+    searchButton: {
+        flex: 0.3
+    },
+    scrollSection: {
+        flex: 0.8
+    },
+    resultImage: {
+        height: 150
+    },
+    resultText: {
+        backgroundColor: "#000",
+        color: "#fff",
+        height: 20
+    }
+});
+
+const mapStateToProps = function (state) {
+    return {
+        searchedRecipes: state.searchedRecipes
+    };
+};
+
+export default connect(mapStateToProps)(Home);

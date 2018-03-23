@@ -1,58 +1,37 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React from "react";
+import { createStore, applyMiddleware, compose } from "redux";
+import { Provider } from "react-redux";
+import thunkMiddleware from "redux-thunk";
+import { createLogger } from "redux-logger";
 
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import AppWithNav, { navMiddleware } from "./app/navigation";
+import reducer from "./app/reducers";
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+const loggerMiddleware = createLogger({
+    predicate: () => __DEV__
 });
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
+const configureStore = function (initialState) {
+
+    const enhancer = compose(
+        applyMiddleware(
+            navMiddleware,
+            thunkMiddleware,
+            loggerMiddleware
+        )
     );
-  }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+    return createStore(reducer, initialState, enhancer);
+};
+
+const store = configureStore({});
+
+const App = function () {
+    return (
+        <Provider store={store}>
+            <AppWithNav />
+        </Provider>
+    );
+};
+
+export default App;
