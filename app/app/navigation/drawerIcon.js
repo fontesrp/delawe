@@ -7,6 +7,7 @@ const drawerIcon = function (name) {
         <Icon
             name={name}
             color={props.tintColor}
+            raised
         />
     );
 };

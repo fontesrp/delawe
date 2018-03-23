@@ -1,7 +1,4 @@
 import React from "react";
-import {
-    View
-} from "react-native";
 
 import { createScreen } from "./screens";
 import drawerIcon from "./drawerIcon";
@@ -14,7 +11,10 @@ const routeConfigs = {
         }
     },
     "Profile": {
-        screen: createScreen("Profile")
+        screen: createScreen("Profile"),
+        navigationOptions: {
+            drawerIcon: drawerIcon("person")
+        }
     }
 };
 

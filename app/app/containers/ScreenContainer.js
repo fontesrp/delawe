@@ -11,12 +11,36 @@ import { ActionCreators } from "../actions";
 
 class ScreenContainer extends Component {
 
+    currentScreenTitle() {
+
+        const route = this.props.navRoutes[0];
+        const { index } = route;
+
+        return route.routes[index].key;
+    }
+
     render() {
+
+        const title = this.currentScreenTitle();
+
+        const leftProps = {
+            icon: "menu",
+            color: "#2d3033",
+            onPress: this.props.openDrawer
+        };
+
+        const centerProps = {
+            style: styles.title,
+            text: (title === "Home")
+                ? "DELWAE"
+                : title
+        };
+
         return (
             <View>
                 <Header
-                    leftComponent={{ icon: "menu", color: styles.menuIcon.color, onPress: this.props.openDrawer }}
-                    centerComponent={{ text: "DELAWE", style: styles.title }}
+                    leftComponent={leftProps}
+                    centerComponent={centerProps}
                     outerContainerStyles={styles.outerContainer}
                 />
                 { React.cloneElement(this.props.children, { ...this.props }) }
@@ -30,12 +54,9 @@ const styles = StyleSheet.create({
         backgroundColor: "#aa4b41"
     },
     title: {
-        color: "#d4dde1",
+        color: "#2d3033",
         fontSize: 20,
         fontWeight: "bold"
-    },
-    menuIcon: {
-        color: "#d4dde1"
     }
 });
 
