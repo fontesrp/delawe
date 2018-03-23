@@ -4,7 +4,7 @@ import {
 } from "react-native";
 
 import { createScreen } from "./screens";
-import drawerIcon from "./icon";
+import drawerIcon from "./drawerIcon";
 
 const routeConfigs = {
     "Home": {
