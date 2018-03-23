@@ -22,18 +22,18 @@ const UserAvatar = function (props) {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    alignItems: "center",
-    flexDirection: "column",
-    height: 250,
-    justifyContent: "space-evenly"
-  },
-  name: {
-    color: "#2d3033",
-    fontSize: 20,
-    fontWeight: "bold"
-  }
+    container: {
+        width: "100%",
+        alignItems: "center",
+        flexDirection: "column",
+        height: 250,
+        justifyContent: "space-evenly"
+    },
+    name: {
+        color: "#2d3033",
+        fontSize: 20,
+        fontWeight: "bold"
+    }
 });
 
 export default UserAvatar;
