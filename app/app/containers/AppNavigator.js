@@ -1,7 +1,7 @@
 import React from "react";
 import { DrawerNavigator } from "react-navigation";
 
-import routeConfigs from "../navigation/config";
+import routeConfigs from "../navigation/routeConfigs";
 import Drawer from "./Drawer";
 
 const AppNavigator = DrawerNavigator(routeConfigs, {
