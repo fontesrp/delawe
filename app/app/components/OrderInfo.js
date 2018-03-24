@@ -12,8 +12,8 @@ const OrderInfo = function (props) {
     return (
         <View>
             <Text style={styles.number}>{props.orderNumber}</Text>
-            <Text>{props.courierName}</Text>
-            <Text>{props.address}</Text>
+            <Text style={styles.text}>{props.courierName}</Text>
+            <Text style={styles.text}>{props.address}</Text>
             <View style={styles.details}>
                 <View>
                     <OrderDetail type="date" {...props} />
@@ -30,10 +30,14 @@ const OrderInfo = function (props) {
 
 const styles = StyleSheet.create({
     number: {
-        fontWeight: "bold"
+        fontWeight: "bold",
+        color: "#2d3033"
     },
     details: {
         flexDirection: "row"
+    },
+    text: {
+        color: "#2d3033"
     }
 });
 

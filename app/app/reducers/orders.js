@@ -2,15 +2,19 @@ import createReducer from "../lib/createReducer";
 
 const dt = new Date();
 
-const today = `${dt.getUTCFullYear()}-${String(dt.getUTCMonth() + 1).padStart(2, "0")}-${String(dt.getUTCDate()).padStart(2, "0")}`;
+const pad = num => String(num).padStart(2, "0");
 
-const randomTime = () => `${Math.floor(Math.random() * 24)}:${Math.floor(Math.random() * 60)}:${Math.floor(Math.random() * 60)}`;
+const today = `${dt.getUTCFullYear()}-${pad(dt.getUTCMonth() + 1)}-${pad(dt.getUTCDate())}`;
+
+const rand = max => pad(Math.floor(Math.random() * max));
+
+const randomTime = () => `${rand(24)}:${rand(60)}:${rand(60)}`;
 
 const initialState = [
     {
         id: 1,
         orderNumber: 2204,
-        courierName: "Adelia Sitz",
+        courierName: "",
         address: "2023 James Street, Vancouver, BC",
         date: today,
         time: randomTime(),
@@ -22,7 +26,7 @@ const initialState = [
     }, {
         id: 2,
         orderNumber: 2100,
-        courierName: "Esteban Nannini",
+        courierName: "",
         address: "3645 Cordova Street, Vancouver, BC",
         date: today,
         time: randomTime(),
@@ -34,7 +38,7 @@ const initialState = [
     }, {
         id: 3,
         orderNumber: 2503,
-        courierName: "Baldarich Guerra",
+        courierName: "",
         address: "2322 Robson St, Vancouver, BC",
         date: today,
         time: randomTime(),
@@ -58,8 +62,8 @@ const initialState = [
     }, {
         id: 5,
         orderNumber: 2336,
-        courierName: "Rifka Peyton",
-        address: ", Vancouver, BC4535 Easy Highway, Surrey, BC",
+        courierName: "",
+        address: "4535 Easy Highway, Surrey, BC",
         date: today,
         time: randomTime(),
         distance: 18.2,
@@ -70,7 +74,7 @@ const initialState = [
     }, {
         id: 6,
         orderNumber: 2964,
-        courierName: "Daniela Gabler",
+        courierName: "",
         address: "3294 Colonial Butterfly Dell, Surrey, BC",
         date: today,
         time: randomTime(),
@@ -118,7 +122,7 @@ const initialState = [
     }, {
         id: 10,
         orderNumber: 2566,
-        courierName: "Elnur Payne",
+        courierName: "",
         address: "142 W Hastings St, Vancouver, BC",
         date: today,
         time: randomTime(),

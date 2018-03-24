@@ -2,28 +2,26 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
 
+import { statusColor } from "../lib/helpers";
+
 const StatusIcon = function (props) {
 
     const iconProps = {
-        bgColor: "",
+        bgColor: statusColor(props.status),
         name: ""
     };
 
     switch (props.status) {
     case "canceled":
-        iconProps.bgColor = "red";
         iconProps.name = "highlight-off";
         break;
     case "pending":
-        iconProps.bgColor = "yellow";
         iconProps.name = "query-builder";
         break;
     case "assigned":
-        iconProps.bgColor = "#335252";
         iconProps.name = "directions-car";
         break;
     case "delivered":
-        iconProps.bgColor = "green";
         iconProps.name = "check-circle";
         break;
     }

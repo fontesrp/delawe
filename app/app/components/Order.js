@@ -8,6 +8,7 @@ import { Callout } from "react-native-maps";
 
 import StatusIcon from "./StatusIcon";
 import OrderInfo from "./OrderInfo";
+import { titleize } from "../lib/util";
 
 const Order = function (props) {
 
@@ -20,7 +21,7 @@ const Order = function (props) {
                 <OrderInfo { ...props } />
             </View>
             <View style={styles.status}>
-                <Text>{props.status}</Text>
+                <Text style={styles.statusText}>{titleize(props.status)}</Text>
             </View>
         </View>
     );
@@ -33,19 +34,25 @@ const styles = StyleSheet.create({
         width: 350
     },
     icon: {
-        flex: 0.2,
+        flex: 0.15,
         justifyContent: "center",
         alignItems: "center"
     },
     info: {
-        flex: 0.6,
+        flex: 0.65,
         justifyContent: "center",
         alignItems: "center"
     },
     status: {
         flex: 0.2,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        borderLeftColor: "#d4dde1",
+        borderLeftWidth: 1
+    },
+    statusText: {
+        color: "#2d3033",
+        textAlign: "center"
     }
 });
 

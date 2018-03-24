@@ -8,6 +8,7 @@ import {
 import { Header } from "react-native-elements";
 
 import { ActionCreators } from "../actions";
+import { titleize } from "../lib/util";
 
 class ScreenContainer extends Component {
 
@@ -37,7 +38,7 @@ class ScreenContainer extends Component {
         };
 
         return (
-            <View>
+            <View style={styles.container}>
                 <Header
                     leftComponent={leftProps}
                     centerComponent={centerProps}
@@ -50,6 +51,9 @@ class ScreenContainer extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     outerContainer: {
         backgroundColor: "#aa4b41"
     },
@@ -59,10 +63,6 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     }
 });
-
-const titleize = function (str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-};
 
 const mapStateToProps = function (state) {
 

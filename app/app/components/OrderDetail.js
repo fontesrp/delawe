@@ -11,8 +11,8 @@ const OrderDetail = function (props) {
     if (props.type === "credits") {
         return (
             <View style={styles.container}>
-                <Text>credits: </Text>
-                <Badge value={props.credits} />
+                <Text style={styles.text}>credits: </Text>
+                <Badge value={props.credits} containerStyle={styles.badge} />
             </View>
         );
     }
@@ -34,14 +34,21 @@ const OrderDetail = function (props) {
     return (
         <View style={styles.container}>
             <Icon name={icon} color="#d4dde1" />
-            <Text>{props[props.type]}{(props.type === "distance") ? " km" : null}</Text>
+            <Text style={styles.text}>{props[props.type]}{(props.type === "distance") ? " km" : null}</Text>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: "row"
+        flexDirection: "row",
+        alignItems: "center"
+    },
+    badge: {
+        backgroundColor: "#335252"
+    },
+    text: {
+        color: "#2d3033"
     }
 });
 

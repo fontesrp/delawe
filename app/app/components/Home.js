@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import {
     View,
-    Text,
-    TouchableHighlight,
     StyleSheet
 } from "react-native";
-import MapView from "react-native-maps";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 import MapMarker from "./MapMarker";
+import PickupBtn from "./PickupBtn";
 
 class Home extends Component {
 
@@ -48,19 +47,19 @@ class Home extends Component {
 
         const store = {
             coords: {
-                latitude: this.props.userLatitude,
-                longitude: this.props.userLongitude
+                latitude: props.userLatitude,
+                longitude: props.userLongitude
             },
-            name: this.props.userName,
-            address: this.props.userAddress
+            name: props.userName,
+            address: props.userAddress
         };
 
         const shownStatus = ["pending", "assigned"];
 
         return (
-            <View>
+            <View style={styles.container}>
                 <MapView
-                    provider="google"
+                    provider={PROVIDER_GOOGLE}
                     region={region}
                     style={styles.map}
                     showsUserLocation
@@ -71,6 +70,17 @@ class Home extends Component {
                         coords={store.coords}
                         calloutInfo={store}
                     />
+                    {props
+                        .couriers
+                        .map(courier => (
+                            <MapMarker
+                                key={courier.id}
+                                type="courier"
+                                coords={courier}
+                                calloutInfo={courier}
+                            />
+                        ))
+                    }
                     {props
                         .orders
                         .filter(order => shownStatus.includes(order.status))
@@ -85,14 +95,18 @@ class Home extends Component {
                         ))
                     }
                 </MapView>
+                <PickupBtn />
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     map: {
-        height: "100%",
+        height: "92%",
         width: "100%"
     }
 });
