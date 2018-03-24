@@ -69,6 +69,12 @@ const mapStateToProps = function (state) {
     const props = {};
 
     Object.keys(state).forEach(function (type) {
+
+        if (typeof state[type] !== "object" || Array.isArray(state[type])) {
+            props[type] = state[type];
+            return;
+        }
+
         Object.keys(state[type]).forEach(function (prop) {
             props[`${type}${titleize(prop)}`] = state[type][prop];
         });
