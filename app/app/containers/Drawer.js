@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import {
     DrawerItems,
@@ -10,6 +11,7 @@ import {
 } from "react-native";
 
 import UserAvatar from "../components/UserAvatar";
+import { ActionCreators } from "../actions";
 
 class Drawer extends Component {
 
@@ -26,7 +28,7 @@ class Drawer extends Component {
                     <UserAvatar
                         image={user.image}
                         name={user.name}
-                        onPress={() => console.log("Pressed!")}
+                        onPress={this.props.goToProfile}
                     />
                     <DrawerItems {...this.props} />
                 </SafeAreaView>
@@ -47,4 +49,8 @@ const mapStateToProps = function (state) {
     };
 };
 
-export default connect(mapStateToProps)(Drawer);
+const mapDispatchToProps = function (dispatch) {
+    return bindActionCreators(ActionCreators, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Drawer);
