@@ -3,24 +3,17 @@ import {
     TextInput,
     View,
     Text,
-    TouchableHighlight,
     StyleSheet
 } from "react-native";
 import {
     Button,
     Card
 } from "react-native-elements";
-import RadioForm from "react-native-simple-radio-button";
 
 import CreditCardHeader from "./CreditCardHeader";
 import CreditCardAdd from "./CreditCardAdd";
-
-const creditAmounts = [
-    { label: "20", value: 20 },
-    { label: "50", value: 50 },
-    { label: "75", value: 75 },
-    { label: "100", value: 100 }
-];
+import CreditCardRadio from "./CreditCardRadio";
+import CreditCardNumber from "./CreditCardNumber";
 
 const CreditCard = function (props) {
 
@@ -28,15 +21,8 @@ const CreditCard = function (props) {
         <Card>
             <CreditCardHeader onPressClear={ () => console.log("Clear!") } />
             <CreditCardAdd value="" onChangeText={ () => console.log("Change!") } />
-            <RadioForm
-                radio_props={creditAmounts}
-                initial={0}
-                formHorizontal={true}
-            />
-            <View style={{ flexDirection: "row" }}>
-                <Text>Card Number:</Text>
-                <TextInput />
-            </View>
+            <CreditCardRadio value={ 0 } onPress={ () => console.log("Radio change!") } />
+            <CreditCardNumber value="" onChangeText={ () => console.log("Card change!") } />
             <View style={{ flexDirection: "row" }}>
                 <View style={{ flexDirection: "row" }}>
                     <View>
