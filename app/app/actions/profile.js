@@ -9,7 +9,7 @@ export const updateProfile = function (userProps) {
 
         if (props.hasOwnProperty("address")) {
             Object.assign(props, breakupAddress(props.address));
-            delete pros.address;
+            delete props.address;
         }
 
         dispatch({
