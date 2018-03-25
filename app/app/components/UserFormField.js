@@ -30,6 +30,7 @@ const UserFormField = function (props) {
         field = <Input { ...fProps } keyboardType="email-address" />;
         break;
     case "phone":
+        // TODO: Format field as user types
         field = <Input { ...fProps } keyboardType="phone-pad" returnKeyType="done" dataDetectorTypes="phoneNumber" />;
         break;
     case "select":

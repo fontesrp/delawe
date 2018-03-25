@@ -50,7 +50,7 @@ const UserForm = function (props) {
                 name: "email",
                 type: "email",
                 label: "Email",
-                placeholder: "john.snow@winterfell.gov"
+                placeholder: "jon.snow@winterfell.gov"
             }, {
                 name: "phone",
                 type: "phone",
