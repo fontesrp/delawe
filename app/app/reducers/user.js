@@ -1,4 +1,5 @@
 import createReducer from "../lib/createReducer";
+import * as types from "../actions/types";
 
 const initialState = {
     name: "MyRestaurant",
@@ -10,19 +11,17 @@ const initialState = {
 
 const userReducer = createReducer(initialState, {
 
-    CHANGE_USER(state, action) {
+    [types.UPDATE_USER](state, action) {
 
-        const newUser = {
-            name: "OtherPlace",
-            image: "https://i.imgur.com/QSIXPaM.jpg",
-            address: "142 W Hastings St, Vancouver, BC",
-            latitude: 49.281964,
-            longitude: -123.1108491
-        };
+        const { props = {} } = action;
 
-        return (state.name === "MyRestaurant")
-            ? newUser
-            : initialState;
+        const newState = { ...state };
+
+        Object.keys(props).forEach(function (key) {
+            newState[key] = props[key];
+        });
+
+        return newState;
     }
 });
 
