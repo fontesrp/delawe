@@ -12,6 +12,12 @@ export const goToProfile = function () {
     };
 };
 
+export const goToMyWallet = function () {
+    return function (dispatch, getState) {
+        dispatch({ type: types.ROUTE_MY_WALLET });
+    };
+};
+
 export const openDrawer = function () {
     return function (dispatch, getState) {
         dispatch({ type: types.ROUTE_DRAWER_OPEN });

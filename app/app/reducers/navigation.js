@@ -14,6 +14,7 @@ const navReducer = function (state = initialState, action) {
     switch (action.type) {
     case types.ROUTE_HOME:
     case types.ROUTE_PROFILE:
+    case types.ROUTE_MY_WALLET:
     case types.ROUTE_DRAWER_OPEN:
     case types.ROUTE_DRAWER_CLOSE:
         nextState = AppNavigator.router.getStateForAction(
