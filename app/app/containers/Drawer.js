@@ -22,15 +22,15 @@ class Drawer extends Component {
         return (
             <ScrollView>
                 <SafeAreaView
-                    style={styles.container}
+                    style={ styles.container }
                     forceInset={{ top: "always", horizontal: "never" }}
                 >
                     <UserAvatar
-                        image={user.image}
-                        name={user.name}
-                        onPress={this.props.goToProfile}
+                        image={ user.image }
+                        name={ user.name }
+                        onPress={ this.props.goToProfile }
                     />
-                    <DrawerItems {...this.props} />
+                    <DrawerItems { ...this.props } />
                 </SafeAreaView>
             </ScrollView>
         );

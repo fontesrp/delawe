@@ -34,9 +34,9 @@ const StatusIcon = function (props) {
 
     return (
         <Icon
-            name={iconProps.name}
+            name={ iconProps.name }
             color="#d4dde1"
-            containerStyle={styles.container}
+            containerStyle={ styles.container }
             raised
         />
     );

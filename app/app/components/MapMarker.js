@@ -62,15 +62,15 @@ const MapMarker = function (props) {
 
     return (
         <Marker
-            coordinate={props.coords}
-            title={markerProps.title}
-            description={markerProps.description}
+            coordinate={ props.coords }
+            title={ markerProps.title }
+            description={ markerProps.description }
         >
-            <View style={styles.container}>
-                <Icon name={markerProps.icon} color="#d4dde1" containerStyle={styles.iconContainer} />
-                <View style={styles.arrowDown} />
+            <View style={ styles.container }>
+                <Icon name={ markerProps.icon } color="#d4dde1" containerStyle={ styles.iconContainer } />
+                <View style={ styles.arrowDown } />
             </View>
-            {markerProps.callout}
+            { markerProps.callout }
         </Marker>
     );
 };

@@ -8,15 +8,15 @@ import { Avatar } from "react-native-elements";
 
 const UserAvatar = function (props) {
     return (
-        <View style={styles.container}>
+        <View style={ styles.container }>
             <Avatar
                 xlarge
                 rounded
-                source={{uri: props.image }}
-                onPress={props.onPress}
-                activeOpacity={0.7}
+                source={{ uri: props.image }}
+                onPress={ props.onPress }
+                activeOpacity={ 0.7 }
             />
-            <Text style={styles.name}>{props.name}</Text>
+            <Text style={ styles.name }>{ props.name }</Text>
         </View>
     );
 };

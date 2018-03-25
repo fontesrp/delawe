@@ -57,40 +57,40 @@ class Home extends Component {
         const shownStatus = ["pending", "assigned"];
 
         return (
-            <View style={styles.container}>
+            <View style={ styles.container }>
                 <MapView
-                    provider={PROVIDER_GOOGLE}
-                    region={region}
-                    style={styles.map}
+                    provider={ PROVIDER_GOOGLE }
+                    region={ region }
+                    style={ styles.map }
                     showsUserLocation
                     showsTraffic
                 >
                     <MapMarker
                         type="store"
-                        coords={store.coords}
-                        calloutInfo={store}
+                        coords={ store.coords }
+                        calloutInfo={ store }
                     />
-                    {props
+                    { props
                         .couriers
                         .map(courier => (
                             <MapMarker
-                                key={courier.id}
+                                key={ courier.id }
                                 type="courier"
-                                coords={courier}
-                                calloutInfo={courier}
+                                coords={ courier }
+                                calloutInfo={ courier }
                             />
                         ))
                     }
-                    {props
+                    { props
                         .orders
                         .filter(order => shownStatus.includes(order.status))
                         .map(order => (
                             <MapMarker
-                                key={order.id}
+                                key={ order.id }
                                 type="client"
-                                coords={order}
-                                status={order.status}
-                                calloutInfo={order}
+                                coords={ order }
+                                status={ order.status }
+                                calloutInfo={ order }
                             />
                         ))
                     }

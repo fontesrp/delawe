@@ -11,17 +11,17 @@ const OrderInfo = function (props) {
 
     return (
         <View>
-            <Text style={styles.number}>{props.orderNumber}</Text>
-            <Text style={styles.text}>{props.courierName}</Text>
-            <Text style={styles.text}>{props.address}</Text>
-            <View style={styles.details}>
+            <Text style={ styles.number }>{ props.orderNumber }</Text>
+            <Text style={ styles.text }>{ props.courierName }</Text>
+            <Text style={ styles.text }>{ props.address }</Text>
+            <View style={ styles.details }>
                 <View>
-                    <OrderDetail type="date" {...props} />
-                    <OrderDetail type="distance" {...props} />
+                    <OrderDetail type="date" { ...props } />
+                    <OrderDetail type="distance" { ...props } />
                 </View>
                 <View>
-                    <OrderDetail type="time" {...props} />
-                    <OrderDetail type="credits" {...props} />
+                    <OrderDetail type="time" { ...props } />
+                    <OrderDetail type="credits" { ...props } />
                 </View>
             </View>
         </View>

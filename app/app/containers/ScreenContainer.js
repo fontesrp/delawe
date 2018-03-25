@@ -38,11 +38,11 @@ class ScreenContainer extends Component {
         };
 
         return (
-            <View style={styles.container}>
+            <View style={ styles.container }>
                 <Header
-                    leftComponent={leftProps}
-                    centerComponent={centerProps}
-                    outerContainerStyles={styles.outerContainer}
+                    leftComponent={ leftProps }
+                    centerComponent={ centerProps }
+                    outerContainerStyles={ styles.outerContainer }
                 />
                 { React.cloneElement(this.props.children, { ...this.props }) }
             </View>

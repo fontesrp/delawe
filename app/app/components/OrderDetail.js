@@ -10,9 +10,9 @@ const OrderDetail = function (props) {
 
     if (props.type === "credits") {
         return (
-            <View style={styles.container}>
-                <Text style={styles.text}>credits: </Text>
-                <Badge value={props.credits} containerStyle={styles.badge} />
+            <View style={ styles.container }>
+                <Text style={ styles.text }>credits: </Text>
+                <Badge value={ props.credits } containerStyle={ styles.badge } />
             </View>
         );
     }
@@ -31,10 +31,14 @@ const OrderDetail = function (props) {
         break;
     }
 
+    const unit = (props.type === "distance")
+        ? " km"
+        : null;
+
     return (
-        <View style={styles.container}>
-            <Icon name={icon} color="#d4dde1" />
-            <Text style={styles.text}>{props[props.type]}{(props.type === "distance") ? " km" : null}</Text>
+        <View style={ styles.container }>
+            <Icon name={ icon } color="#d4dde1" />
+            <Text style={ styles.text }>{ props[props.type] }{ unit }</Text>
         </View>
     );
 };

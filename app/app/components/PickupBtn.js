@@ -9,9 +9,9 @@ import {
 const PickupBtn = function (props) {
 
     return (
-        <TouchableHighlight style={styles.container} onPress={() => console.log("Request pickup!")}>
-            <View style={styles.view}>
-                <Text style={styles.text}>REQUEST FOR PICKUP</Text>
+        <TouchableHighlight style={ styles.container } onPress={() => console.log("Request pickup!")}>
+            <View style={ styles.view }>
+                <Text style={ styles.text }>REQUEST FOR PICKUP</Text>
             </View>
         </TouchableHighlight>
     );
