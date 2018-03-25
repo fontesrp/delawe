@@ -49,7 +49,13 @@ class Profile extends Component {
             .keys(props)
             .filter(stateKey => profile.test(stateKey))
             .forEach(function (stateKey) {
-                const name = stateKey.replace(profile, "").toLowerCase();
+
+                let name = stateKey.replace(profile, "").toLowerCase();
+
+                if (name === "streetaddress") {
+                    name = "streetAddress";
+                }
+
                 state[name] = props[stateKey];
             });
 

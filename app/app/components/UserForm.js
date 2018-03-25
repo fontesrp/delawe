@@ -107,6 +107,7 @@ const UserForm = function (props) {
                                         key={ field.name }
                                         value={ props[field.name] }
                                         onInputChange = { props.onInputChange }
+                                        error={ !props[field.name] }
                                     />
                                 ))
                             }

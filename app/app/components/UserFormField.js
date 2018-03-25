@@ -33,8 +33,11 @@ const UserFormField = function (props) {
         field = <Input { ...fProps } keyboardType="phone-pad" returnKeyType="done" dataDetectorTypes="phoneNumber" />;
         break;
     case "select":
+
         fProps.onValueChange = fProps.onChangeText;
         delete fProps.onChangeText;
+
+        // TODO: The picker from this Select is covering the whole screen
         field = <Select { ...fProps } />;
         break;
     }
