@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { KeyboardAvoidingView } from "react-native";
+import {
+    KeyboardAvoidingView,
+    StyleSheet
+} from "react-native";
 
 import { breakupAddress } from "../lib/util";
 import UserForm from "./UserForm";
@@ -65,7 +68,7 @@ class Profile extends Component {
     render() {
 
         return (
-            <KeyboardAvoidingView style={{flex: 1}} behavior="padding">
+            <KeyboardAvoidingView style={ styles.container } behavior="padding">
                 <UserForm
                     { ...this.getProfileState() }
                     onInputChange={ this.onInputChange.bind(this) }
@@ -76,5 +79,11 @@ class Profile extends Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+});
 
 export default Profile;
