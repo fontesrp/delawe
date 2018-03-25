@@ -135,7 +135,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CB4786ABC2CEB6805F5517C2;
+			remoteGlobalIDString = C024FCE52E1D25E3390680BC;
 			remoteInfo = React;
 		};
 		17091E85081915EE87C9D7B384503E03 /* PBXContainerItemProxy */ = {
@@ -156,21 +156,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CB4786ABC2CEB6805F5517C2;
+			remoteGlobalIDString = C024FCE52E1D25E3390680BC;
 			remoteInfo = React;
 		};
 		86FFABA94F02C3F36FC9863080F74122 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CB4786ABC2CEB6805F5517C2;
+			remoteGlobalIDString = C024FCE52E1D25E3390680BC;
 			remoteInfo = React;
 		};
 		8720FD2330AE2788AAE299B360502CD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CB4786ABC2CEB6805F5517C2;
+			remoteGlobalIDString = C024FCE52E1D25E3390680BC;
 			remoteInfo = React;
 		};
 		8756BC3F1900F707A5594A21D4CA608A /* PBXContainerItemProxy */ = {
@@ -191,7 +191,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CB4786ABC2CEB6805F5517C2;
+			remoteGlobalIDString = C024FCE52E1D25E3390680BC;
 			remoteInfo = React;
 		};
 		DA9B38F4E32135C929F95C108DA2EB44 /* PBXContainerItemProxy */ = {
@@ -212,7 +212,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CB4786ABC2CEB6805F5517C2;
+			remoteGlobalIDString = C024FCE52E1D25E3390680BC;
 			remoteInfo = React;
 		};
 /* End PBXContainerItemProxy section */
