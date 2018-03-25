@@ -16,13 +16,7 @@ const initialState = {
 const userReducer = createReducer(initialState, {
 
     [types.UPDATE_USER](state, action) {
-
-        const newState = patchOldState(state, action);
-
-        // TODO: send PATCH request
-        // TODO: update state with API response
-
-        return newState;
+        return patchOldState(state, action);
     }
 });
 

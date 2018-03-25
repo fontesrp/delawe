@@ -6,17 +6,18 @@ import {
     StyleSheet
 } from "react-native";
 
-const CreditCardAdd = function (props) {
+const CreditCardDetail = function (props) {
 
     // TODO: format text ($ 0.00) as user inputs
 
     return (
         <View style={ styles.container }>
             <View style={ styles.textWrapper }>
-                <Text style={ styles.text }>Add</Text>
-                <Text style={ styles.text }>Credits</Text>
+                <Text style={ styles.text }>{ props.textA }</Text>
+                <Text style={ styles.text }>{ props.textB }</Text>
             </View>
             <TextInput
+                name={ props.name }
                 style={ styles.input }
                 value={ props.value }
                 onChangeText={ props.onChangeText }
@@ -30,14 +31,15 @@ const CreditCardAdd = function (props) {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
-        marginBottom: 10
+        marginBottom: 10,
+        width: "50%"
     },
     textWrapper: {
-        width: "27%"
+        width: "34%"
     },
     text: {
         color: "#2d3033",
-        fontSize: 13,
+        fontSize: 12,
         paddingRight: 10,
         textAlign: "right"
     },
@@ -47,8 +49,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         fontSize: 13,
         paddingLeft: 5,
-        width: "40%"
+        width: "66%"
     }
 });
 
-export default CreditCardAdd;
+export default CreditCardDetail;

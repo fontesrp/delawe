@@ -11,7 +11,12 @@ class Wallet extends Component {
     render() {
         return (
             <View>
-                <CreditCard />
+                <CreditCard
+                    { ...this.props.walletCreditCard }
+                    onChange={ this.props.updateCreditCard }
+                    onSave={ this.props.addCredit }
+                    clearCard={ this.props.clearCard }
+                />
             </View>
         );
     }
