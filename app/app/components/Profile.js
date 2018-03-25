@@ -1,24 +1,11 @@
 import React, { Component } from "react";
 import {
-    View,
-    TouchableHighlight,
-    Text,
+    KeyboardAvoidingView,
     StyleSheet
 } from "react-native";
-import { Avatar } from "react-native-elements";
-import PhotoUpload from "react-native-photo-upload";
-import t from "tcomb-form-native";
 
 import { breakupAddress } from "../lib/util";
-
-const { Form } = t.form;
-
-const User = t.struct({
-    name: t.String,
-    streetAddress: t.String,
-    city: t.String,
-    province: t.String
-});
+import UserForm from "./UserForm";
 
 class Profile extends Component {
 
@@ -26,96 +13,76 @@ class Profile extends Component {
 
         super(props);
 
-        this.state = {
+        props.updateProfile({
             image: props.userImage,
             name: props.userName,
-            ...breakupAddress(this.props.userAddress)
-        };
+            contact: props.userContact,
+            email: props.userEmail,
+            phone: props.userPhone,
+            ...breakupAddress(props.userAddress)
+        });
     }
 
     onPhotoSelect(avatar) {
         if (avatar) {
-            this.setState({
+            this.props.updateProfile({
                 image: `data:image/png;base64,${avatar}`
             });
         }
     }
 
-    onFormChange(value) {
-        this.setState({ ...value });
+    onInputChange(field) {
+        this.props.updateProfile(field);
     }
 
-    onSavePress() {
+    onSave() {
 
-        const { form } = this.refs;
-        const value = form.getValue();
+        // TODO: validate form
 
-        if (value === null) {
-            return;
-        }
+        this.props.updateUser(this.getProfileState());
+    }
 
-        const userProps = Object.assign({}, this.state, value);
+    getProfileState() {
 
-        this.props.updateUser(userProps);
+        const profile = /^profile/;
+        const { props } = this;
+        const state = {};
+
+        Object
+            .keys(props)
+            .filter(stateKey => profile.test(stateKey))
+            .forEach(function (stateKey) {
+
+                let name = stateKey.replace(profile, "").toLowerCase();
+
+                if (name === "streetaddress") {
+                    name = "streetAddress";
+                }
+
+                state[name] = props[stateKey];
+            });
+
+        return state;
     }
 
     render() {
 
-        const { state } = this;
-
         return (
-            <View style={ styles.container }>
-                <PhotoUpload
-                    containerStyle={{ flex: 0.3 }}
+            <KeyboardAvoidingView style={ styles.container } behavior="padding">
+                <UserForm
+                    { ...this.getProfileState() }
+                    onInputChange={ this.onInputChange.bind(this) }
                     onPhotoSelect={ this.onPhotoSelect.bind(this) }
-                >
-                    <Avatar
-                        xlarge
-                        rounded
-                        source={{ uri: state.image }}
-                        activeOpacity={ 0.7 }
-                    />
-                </PhotoUpload>
-                <View style={ styles.formContainer }>
-                    <Form
-                        ref="form"
-                        type={ User }
-                        value={ state }
-                        onChange={ this.onFormChange.bind(this) }
-                    />
-                    <TouchableHighlight
-                        onPress={ this.onSavePress.bind(this) }
-                        style={ styles.saveBtn }
-                    >
-                        <Text style={ styles.saveTxt }>Save</Text>
-                    </TouchableHighlight>
-                </View>
-            </View>
+                    onSave={ this.onSave.bind(this) }
+                />
+            </KeyboardAvoidingView>
         );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: "center"
-    },
-    formContainer: {
-        flex: 0.7,
-        width: "90%"
-    },
-    saveBtn: {
-        alignItems: "center",
-        backgroundColor: "#335252",
-        borderRadius: 5,
-        height: 40,
-        justifyContent: "center",
-        marginTop: 20
-    },
-    saveTxt: {
-        color: "#d4dde1",
-        fontWeight: "bold",
-        fontSize: 18
+        flex: 1
     }
 });
 

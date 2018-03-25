@@ -16,3 +16,16 @@ export const breakupAddress = function (address) {
 export const joinAddress = function (comp) {
     return `${comp.streetAddress}, ${comp.city}, ${comp.province}`;
 };
+
+export const patchOldState = function (state, action) {
+
+    const { props = {} } = action;
+
+    const newState = { ...state };
+
+    Object.keys(props).forEach(function (key) {
+        newState[key] = props[key];
+    });
+
+    return newState;
+};
