@@ -14,7 +14,7 @@ const UserFormField = function (props) {
         }
     };
 
-    const fProps = Object.assign({}, props);
+    const fProps = { ...props };
 
     const { type = "text" } = fProps;
     delete fProps.type;
