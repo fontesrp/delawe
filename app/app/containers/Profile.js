@@ -5,7 +5,7 @@ import {
 } from "react-native";
 
 import { breakupAddress } from "../lib/util";
-import UserForm from "./UserForm";
+import UserForm from "../components/UserForm";
 
 class Profile extends Component {
 

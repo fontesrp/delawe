@@ -5,8 +5,8 @@ import {
 } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
-import MapMarker from "./MapMarker";
-import PickupBtn from "./PickupBtn";
+import MapMarker from "../components/MapMarker";
+import PickupBtn from "../components/PickupBtn";
 
 class Home extends Component {
 

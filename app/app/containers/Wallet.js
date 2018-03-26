@@ -7,8 +7,8 @@ import {
 } from "react-native";
 import { Divider } from "react-native-elements";
 
-import WalletHeader from "./WalletHeader";
-import WalletItem from "./WalletItem";
+import WalletHeader from "../components/WalletHeader";
+import WalletItem from "../components/WalletItem";
 
 class Wallet extends Component {
 
