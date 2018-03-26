@@ -26,7 +26,7 @@ class Wallet extends Component {
 
     renderSeparator() {
         return (
-            <Divider />
+            <Divider style={ styles.divider } />
         );
     }
 
@@ -47,6 +47,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#d4dde1"
+    },
+    divider: {
+        marginLeft: 10,
+        marginRight: 10
     }
 });
 
