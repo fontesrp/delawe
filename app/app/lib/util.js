@@ -29,3 +29,11 @@ export const patchOldState = function (state, action) {
 
     return newState;
 };
+
+export const toCurrency = function (num) {
+    return Number(num).toLocaleString("en-CA", { style: "currency", currency: "CAD" });
+};
+
+export const prettyNumber = function (num) {
+    return toCurrency(num).replace("$", "");
+}
