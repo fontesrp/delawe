@@ -145,72 +145,82 @@ const initialState = [
         id: 11,
         orderNumber: 4235,
         orderType: "income",
+        credits: 934,
         status: "processed",
         date: today,
-        time: randomTime
+        time: randomTime()
     }, {
         id: 12,
         orderNumber: 4900,
         orderType: "income",
+        credits: 448,
         status: "processed",
         date: today,
-        time: randomTime
+        time: randomTime()
     }, {
         id: 13,
         orderNumber: 4362,
         orderType: "income",
+        credits: 448,
         status: "processed",
         date: today,
-        time: randomTime
+        time: randomTime()
     }, {
         id: 14,
         orderNumber: 3807,
         orderType: "income",
+        credits: 707,
         status: "processed",
         date: today,
-        time: randomTime
+        time: randomTime()
     }, {
         id: 15,
         orderNumber: 3045,
         orderType: "income",
+        credits: 938,
         status: "processed",
         date: today,
-        time: randomTime
+        time: randomTime()
     }, {
         id: 16,
         orderNumber: 4246,
         orderType: "income",
+        credits: 440,
         status: "processed",
         date: today,
-        time: randomTime
+        time: randomTime()
     }, {
         id: 17,
         orderNumber: 4420,
         orderType: "income",
+        credits: 956,
         status: "processed",
         date: today,
-        time: randomTime
+        time: randomTime()
     }, {
         id: 18,
         orderNumber: 4501,
         orderType: "income",
+        credits: 759,
         status: "processed",
         date: today,
-        time: randomTime
+        time: randomTime()
     }, {
         id: 19,
         orderNumber: 3649,
         orderType: "income",
+        credits: 683,
         status: "processed",
         date: today,
-        time: randomTime
+        time: randomTime()
     }, {
         id: 20,
         orderNumber: 4630,
         orderType: "income",
+        credits: 790,
         status: "processed",
         date: today,
-        time: randomTime
+        time: randomTime()
     }
 ];
 
