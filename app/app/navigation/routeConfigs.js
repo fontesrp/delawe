@@ -15,6 +15,12 @@ const routeConfigs = {
         navigationOptions: {
             drawerIcon: drawerIcon("person")
         }
+    },
+    "My Wallet": {
+        screen: createScreen("Wallet"),
+        navigationOptions: {
+            drawerIcon: drawerIcon("account-balance-wallet")
+        }
     }
 };
 

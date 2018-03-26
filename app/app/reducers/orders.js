@@ -14,6 +14,7 @@ const initialState = [
     {
         id: 1,
         orderNumber: 2204,
+        orderType: "expense",
         courierName: "",
         address: "2023 James Street, Vancouver, BC",
         date: today,
@@ -26,6 +27,7 @@ const initialState = [
     }, {
         id: 2,
         orderNumber: 2100,
+        orderType: "expense",
         courierName: "",
         address: "3645 Cordova Street, Vancouver, BC",
         date: today,
@@ -38,6 +40,7 @@ const initialState = [
     }, {
         id: 3,
         orderNumber: 2503,
+        orderType: "expense",
         courierName: "",
         address: "2322 Robson St, Vancouver, BC",
         date: today,
@@ -50,6 +53,7 @@ const initialState = [
     }, {
         id: 4,
         orderNumber: 2401,
+        orderType: "expense",
         courierName: "Indiana Niven",
         address: "877 Tanner Street, Vancouver, BC",
         date: today,
@@ -62,6 +66,7 @@ const initialState = [
     }, {
         id: 5,
         orderNumber: 2336,
+        orderType: "expense",
         courierName: "",
         address: "4535 Easy Highway, Surrey, BC",
         date: today,
@@ -74,6 +79,7 @@ const initialState = [
     }, {
         id: 6,
         orderNumber: 2964,
+        orderType: "expense",
         courierName: "",
         address: "3294 Colonial Butterfly Dell, Surrey, BC",
         date: today,
@@ -86,6 +92,7 @@ const initialState = [
     }, {
         id: 7,
         orderNumber: 2311,
+        orderType: "expense",
         courierName: "Dagný Abrami",
         address: "1531 Clear Pond Mountain, Surrey, BC",
         date: today,
@@ -98,6 +105,7 @@ const initialState = [
     }, {
         id: 8,
         orderNumber: 2917,
+        orderType: "expense",
         courierName: "Mädchen Lindon",
         address: "1529 Dewy By-pass, Surrey, BC",
         date: today,
@@ -110,6 +118,7 @@ const initialState = [
     }, {
         id: 9,
         orderNumber: 2098,
+        orderType: "expense",
         courierName: "Kai Vernersen",
         address: "3944 Blue Deer Bank, Surrey, BC",
         date: today,
@@ -122,6 +131,7 @@ const initialState = [
     }, {
         id: 10,
         orderNumber: 2566,
+        orderType: "expense",
         courierName: "",
         address: "142 W Hastings St, Vancouver, BC",
         date: today,
@@ -131,6 +141,86 @@ const initialState = [
         status: "pending",
         latitude: 49.229160,
         longitude: -122.868876
+    }, {
+        id: 11,
+        orderNumber: 4235,
+        orderType: "income",
+        credits: 934,
+        status: "processed",
+        date: today,
+        time: randomTime()
+    }, {
+        id: 12,
+        orderNumber: 4900,
+        orderType: "income",
+        credits: 448,
+        status: "processed",
+        date: today,
+        time: randomTime()
+    }, {
+        id: 13,
+        orderNumber: 4362,
+        orderType: "income",
+        credits: 448,
+        status: "processed",
+        date: today,
+        time: randomTime()
+    }, {
+        id: 14,
+        orderNumber: 3807,
+        orderType: "income",
+        credits: 707,
+        status: "processed",
+        date: today,
+        time: randomTime()
+    }, {
+        id: 15,
+        orderNumber: 3045,
+        orderType: "income",
+        credits: 938,
+        status: "processed",
+        date: today,
+        time: randomTime()
+    }, {
+        id: 16,
+        orderNumber: 4246,
+        orderType: "income",
+        credits: 440,
+        status: "processed",
+        date: today,
+        time: randomTime()
+    }, {
+        id: 17,
+        orderNumber: 4420,
+        orderType: "income",
+        credits: 956,
+        status: "processed",
+        date: today,
+        time: randomTime()
+    }, {
+        id: 18,
+        orderNumber: 4501,
+        orderType: "income",
+        credits: 759,
+        status: "processed",
+        date: today,
+        time: randomTime()
+    }, {
+        id: 19,
+        orderNumber: 3649,
+        orderType: "income",
+        credits: 683,
+        status: "processed",
+        date: today,
+        time: randomTime()
+    }, {
+        id: 20,
+        orderNumber: 4630,
+        orderType: "income",
+        credits: 790,
+        status: "processed",
+        date: today,
+        time: randomTime()
     }
 ];
 
