@@ -21,6 +21,12 @@ const routeConfigs = {
         navigationOptions: {
             drawerIcon: drawerIcon("account-balance-wallet")
         }
+    },
+    "Order History": {
+        screen: createScreen("OrderHistory"),
+        navigationOptions: {
+            drawerIcon: drawerIcon("history")
+        }
     }
 };
 
