@@ -18,6 +18,12 @@ export const goToMyWallet = function () {
     };
 };
 
+export const goToOrderHistory = function () {
+    return function (dispatch, getState) {
+        dispatch({ type: types.ROUTE_ORDER_HISTORY });
+    };
+};
+
 export const openDrawer = function () {
     return function (dispatch, getState) {
         dispatch({ type: types.ROUTE_DRAWER_OPEN });
