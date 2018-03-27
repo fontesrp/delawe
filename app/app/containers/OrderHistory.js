@@ -20,7 +20,7 @@ class OrderHistory extends Component {
 
     renderSeparator() {
         return (
-            <Divider style={{ height: 5 }} />
+            <Divider style={ styles.divider } />
         );
     }
 
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     divider: {
-        height: 3,
+        height: 5,
         backgroundColor: "#d4dde1"
     }
 });
