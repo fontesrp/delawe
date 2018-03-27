@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import {
     FlatList,
-    View,
-    Text,
     StyleSheet
 } from "react-native";
 import { Divider } from "react-native-elements";
