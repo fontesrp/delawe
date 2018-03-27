@@ -41,14 +41,16 @@ const styles = StyleSheet.create({
     info: {
         flex: 0.65,
         justifyContent: "center",
-        alignItems: "center"
+        paddingLeft: 10
     },
     status: {
         flex: 0.2,
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "flex-start",
         borderLeftColor: "#d4dde1",
-        borderLeftWidth: 1
+        borderLeftWidth: 1,
+        paddingLeft: 5,
+        marginLeft:5
     },
     statusText: {
         color: "#2d3033",

@@ -1,15 +1,51 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import {
+    FlatList,
+    View,
+    StyleSheet
+} from "react-native";
+import { Divider } from "react-native-elements";
+
+import Order from "../components/Order";
 
 class OrderHistory extends Component {
 
-    render() {
+    renderItem({ item, index }) {
         return (
-            <View>
-                <Text>Order History</Text>
+            <View style={ styles.item }>
+                <Order key={ index } { ...item } />
             </View>
         );
     }
+
+    renderSeparator() {
+        return (
+            <Divider style={{ height: 5 }} />
+        );
+    }
+
+    render() {
+        return (
+            <FlatList
+                data={ this.props.orders }
+                renderItem={ this.renderItem }
+                ItemSeparatorComponent={ this.renderSeparator }
+            />
+        );
+    }
 }
+
+const styles = StyleSheet.create({
+    item: {
+        backgroundColor: "white",
+        paddingTop: 10,
+        paddingBottom: 10,
+        alignItems: "center"
+    },
+    divider: {
+        height: 3,
+        backgroundColor: "#d4dde1"
+    }
+});
 
 export default OrderHistory;
