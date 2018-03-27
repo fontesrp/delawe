@@ -2,6 +2,7 @@ export const ROUTE_HOME = "Home";
 export const ROUTE_PROFILE = "Profile";
 export const ROUTE_MY_WALLET = "My Wallet";
 export const ROUTE_ORDER_HISTORY = "Order History";
+export const ROUTE_SETTINGS = "Settings";
 export const ROUTE_DRAWER_OPEN = "DrawerOpen";
 export const ROUTE_DRAWER_CLOSE = "DrawerClose";
 

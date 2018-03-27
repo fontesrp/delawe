@@ -24,6 +24,12 @@ export const goToOrderHistory = function () {
     };
 };
 
+export const goToSettings = function () {
+    return function (dispatch, getState) {
+        dispatch({ type: types.ROUTE_SETTINGS });
+    };
+};
+
 export const openDrawer = function () {
     return function (dispatch, getState) {
         dispatch({ type: types.ROUTE_DRAWER_OPEN });
