@@ -7,6 +7,7 @@ export const ROUTE_DRAWER_OPEN = "DrawerOpen";
 export const ROUTE_DRAWER_CLOSE = "DrawerClose";
 
 export const UPDATE_USER = "UPDATE_USER";
+export const UPDATE_LOCATION = "UPDATE_LOCATION";
 
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 
