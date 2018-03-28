@@ -3,8 +3,8 @@ import * as types from "../actions/types";
 import { patchOldState } from "../lib/util";
 
 const initialState = {
-    name: "MyRestaurant",
-    image: "https://i.imgur.com/RrUk5JL.jpg",
+    name: "Grilled Gourmet",
+    image: "https://www.48hourslogo.com/48hourslogo_data/2016/09/21/54195_1474457526.jpg",
     address: "2075 Kingsway St, Vancouver, BC",
     contact: "Eric Khan",
     email: "eric.khan@gmail.com",
