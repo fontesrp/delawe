@@ -10,40 +10,30 @@ import PickupBtn from "../components/PickupBtn";
 
 class Home extends Component {
 
-    constructor(props) {
-
-        super(props);
-
-        this.state = {
-            currentLoc: {
-                latitude: props.userLatitude,
-                longitude: props.userLongitude
-            }
-        };
-    }
-
     componentDidMount() {
-        navigator.geolocation.getCurrentPosition(this.geoSuccess.bind(this));
+        if (this.props.userEnableLocation) {
+            navigator.geolocation.getCurrentPosition(this.geoSuccess.bind(this), this.geoFail.bind(this));
+        }
     }
 
     geoSuccess({ coords }) {
-        this.setState({
-            currentLoc: {
+        this.props.updateLocation({
+            currentLocation: {
                 latitude: coords.latitude,
                 longitude: coords.longitude
             }
         });
     }
 
+    geoFail() {
+        this.props.updateLocation({
+            enableLocation: false
+        });
+    }
+
     render() {
 
         const { props } = this;
-
-        const region = {
-            ...this.state.currentLoc,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421
-        };
 
         const store = {
             coords: {
@@ -54,6 +44,18 @@ class Home extends Component {
             address: props.userAddress
         };
 
+        const region = {
+            ...store.coords,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421
+        };
+
+        const currLoc = props.userCurrentLocation;
+
+        if (currLoc.latitude !== null) {
+            Object.assign(region, currLoc);
+        }
+
         const shownStatus = ["pending", "assigned"];
 
         return (
@@ -62,7 +64,7 @@ class Home extends Component {
                     provider={ PROVIDER_GOOGLE }
                     region={ region }
                     style={ styles.map }
-                    showsUserLocation
+                    showsUserLocation={ (currLoc.latitude !== null) }
                     showsTraffic
                 >
                     <MapMarker

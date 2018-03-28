@@ -27,6 +27,12 @@ const routeConfigs = {
         navigationOptions: {
             drawerIcon: drawerIcon("history")
         }
+    },
+    "Settings": {
+        screen: createScreen("Settings"),
+        navigationOptions: {
+            drawerIcon: drawerIcon("settings")
+        }
     }
 };
 

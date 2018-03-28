@@ -4,12 +4,14 @@ import ScreenContainer from "../containers/ScreenContainer";
 import Home from "../containers/Home";
 import OrderHistory from "../containers/OrderHistory";
 import Profile from "../containers/Profile";
+import Settings from "../containers/Settings";
 import Wallet from "../containers/Wallet";
 
 const screens = {
     Home,
     OrderHistory,
     Profile,
+    Settings,
     Wallet
 };
 

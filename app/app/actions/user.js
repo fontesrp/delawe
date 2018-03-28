@@ -20,3 +20,36 @@ export const updateUser = function (userProps) {
         });
     };
 };
+
+export const updateLocation = function (params) {
+
+    return function (dispatch, getState) {
+
+        const props = {
+            currentLocation: {
+                latitude: null,
+                longitude: null
+            }
+        };
+
+        if (params.enableLocation !== undefined) {
+            props.enableLocation = params.enableLocation;
+        } else {
+            Object.assign(props.currentLocation, params.currentLocation);
+        }
+
+        dispatch({
+            type: types.UPDATE_LOCATION,
+            props
+        });
+    };
+};
+
+export const setTracking = function (enable) {
+
+    if (enable) {
+        navigator.geolocation.requestAuthorization();
+    }
+
+    return updateLocation({ enableLocation: enable });
+};

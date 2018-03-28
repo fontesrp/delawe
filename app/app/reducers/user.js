@@ -10,12 +10,21 @@ const initialState = {
     email: "eric.khan@gmail.com",
     phone: "3127810051",
     latitude: 49.2136074,
-    longitude: -122.8245812
+    longitude: -122.8245812,
+    enableLocation: false,
+    currentLocation: {
+        latitude: null,
+        longitude: null
+    }
 };
 
 const userReducer = createReducer(initialState, {
 
     [types.UPDATE_USER](state, action) {
+        return patchOldState(state, action);
+    },
+
+    [types.UPDATE_LOCATION](state, action) {
         return patchOldState(state, action);
     }
 });
