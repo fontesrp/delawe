@@ -26,7 +26,7 @@ class Api {
 
     static xhr(route, params, verb) {
 
-        const host = "http://www.recipepuppy.com";
+        const host = "http://localhost:3000";
         const url = `${host}${route}`;
 
         const options = {

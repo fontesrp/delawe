@@ -30,7 +30,7 @@ class Settings extends Component {
                 </List>
                 <Button
                     title="Logout"
-                    onPress={ () => console.log("logout!") }
+                    onPress={ this.props.logout }
                     color="#2d3033"
                     backgroundColor="white"
                     containerViewStyle={ styles.logout }
