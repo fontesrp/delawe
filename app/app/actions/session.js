@@ -1,17 +1,28 @@
 import * as types from "./types";
+import Api from "../lib/api";
 
 export const login = function (params) {
 
     return function (dispatch, getState) {
 
-        // TODO: Get access token
+        return Api
+            .post("/tokens", params)
+            .then(function (res) {
 
-        const props = params;
+                const type = (res.errors !== undefined)
+                    ? types.LOGIN_ERROR
+                    : types.LOGIN;
 
-        dispatch({
-            type: types.LOGIN,
-            props
-        });
+                const props = {
+                    ...params,
+                    ...res
+                };
+
+                dispatch({
+                    type,
+                    props
+                });
+            });
     };
 };
 

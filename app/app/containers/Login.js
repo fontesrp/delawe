@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import {
     View,
+    Text,
     StyleSheet
 } from "react-native";
 
@@ -21,6 +22,8 @@ class Login extends Component {
             email: props.session.email,
             password: ""
         };
+
+        props.logout();
     }
 
     onChangeText(props) {
@@ -41,11 +44,19 @@ class Login extends Component {
 
         return (
             <View style={ styles.container }>
-                <LoginLogo containerStyle={ styles.logoContainer } />
+                <LoginLogo
+                    containerStyle={ styles.logoContainer }
+                />
+                { (props.session.errors.length > 0)
+                    ? <Text style={ styles.error }>Invalid email / password</Text>
+                    : null
+                }
                 <LoginFields
                     containerStyle={ styles.inputContainer }
                     onChangeText={ this.onChangeText.bind(this) }
                     values={ this.state }
+                    onLogin={ this.login.bind(this) }
+                    errors={ props.session.errors }
                 />
                 <LoginButtons
                     containerStyle={ styles.buttonContainer }
@@ -78,6 +89,10 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         flex: 0.35
+    },
+    error: {
+        marginLeft: 20,
+        color: "#aa4b41"
     }
 });
 
