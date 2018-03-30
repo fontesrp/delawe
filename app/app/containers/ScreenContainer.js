@@ -27,7 +27,8 @@ class ScreenContainer extends Component {
         const leftProps = {
             icon: "menu",
             color: "#2d3033",
-            onPress: this.props.openDrawer
+            onPress: this.props.openDrawer,
+            underlayColor: "rgba(0, 0, 0, 0.5)"
         };
 
         const centerProps = {
