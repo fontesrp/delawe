@@ -24,6 +24,12 @@ const navReducer = function (state = initialState, action) {
             state
         );
         break;
+    case types.LOGIN:
+        nextState = AppNavigator.router.getStateForAction(
+            NavigationActions.navigate({ routeName: "Home" }),
+            state
+        );
+        break;
     default:
         nextState = AppNavigator.router.getStateForAction(action,state);
         break;
