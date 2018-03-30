@@ -1,10 +1,14 @@
 class Api {
 
+    static setAuth(jwt) {
+        this.auth = jwt;
+    }
+
     static headers() {
         return {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "dataType": "json"
+            "Authorization": this.auth
         };
     }
 
@@ -24,9 +28,9 @@ class Api {
         return this.xhr(route, params, "DELETE");
     }
 
-    static xhr(route, params, verb) {
+    static async xhr(route, params, verb) {
 
-        const host = "http://www.recipepuppy.com";
+        const host = "http://localhost:3000";
         const url = `${host}${route}`;
 
         const options = {
@@ -38,11 +42,17 @@ class Api {
             options.body = JSON.stringify(params);
         }
 
-        return fetch(url, options)
-            .then(res => res.json())
-            .catch(function () {
-                return { error: "request error" };
-            });
+        let response;
+        let json;
+
+        try {
+            response = await fetch(url, options);
+            json = await response.json();
+        } catch (e) {
+            json = { errors: ["request error"] };
+        }
+
+        return json;
     }
 }
 
