@@ -25,7 +25,7 @@ const LoginFields = function (props) {
                 style={ styles.input }
                 clearButtonMode="while-editing"
                 onChangeText={ onChangeText }
-                value={ props.email }
+                value={ props.values.email }
                 enablesReturnKeyAutomatically
                 keyboardType="email-address"
                 onSubmitEditing={ () => password.focus() }
@@ -41,10 +41,11 @@ const LoginFields = function (props) {
                 style={ styles.input }
                 clearButtonMode="while-editing"
                 onChangeText={ onChangeText }
-                value={ props.password }
+                value={ props.values.password }
                 enablesReturnKeyAutomatically
                 secureTextEntry
                 clearTextOnFocus
+                onSubmitEditing={ props.onLogin }
             />
         </View>
     );
