@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "lib-config": "chmod +x fix_dependencies.sh && ./fix_dependencies.sh"
   },
   "dependencies": {
     "babel-core": "^6.26.0",
