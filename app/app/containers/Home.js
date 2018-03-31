@@ -7,6 +7,7 @@ import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 import MapMarker from "../components/MapMarker";
 import PickupBtn from "../components/PickupBtn";
+import PickupModal from "../components/PickupModal";
 
 class Home extends Component {
 
@@ -20,6 +21,7 @@ class Home extends Component {
 
         props.fetchCouriers();
         props.fetchOrders();
+        this.state = { modalVisible: false };
     }
 
     geoSuccess({ coords }) {
@@ -99,7 +101,8 @@ class Home extends Component {
                         ))
                     }
                 </MapView>
-                <PickupBtn />
+                <PickupModal visible={ this.state.modalVisible } />
+                <PickupBtn onPress={ () => this.setState({ modalVisible: true }) } />
             </View>
         );
     }
