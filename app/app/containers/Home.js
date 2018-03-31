@@ -10,10 +10,16 @@ import PickupBtn from "../components/PickupBtn";
 
 class Home extends Component {
 
-    componentDidMount() {
-        if (this.props.userEnableLocation) {
+    constructor(props) {
+
+        super(props);
+
+        if (props.userEnableLocation) {
             navigator.geolocation.getCurrentPosition(this.geoSuccess.bind(this), this.geoFail.bind(this));
         }
+
+        props.fetchCouriers();
+        props.fetchOrders();
     }
 
     geoSuccess({ coords }) {
@@ -40,7 +46,7 @@ class Home extends Component {
                 latitude: props.userLatitude,
                 longitude: props.userLongitude
             },
-            name: props.userName,
+            name: props.userBusinessName,
             address: props.userAddress
         };
 
@@ -51,10 +57,6 @@ class Home extends Component {
         };
 
         const currLoc = props.userCurrentLocation;
-
-        if (currLoc.latitude !== null) {
-            Object.assign(region, currLoc);
-        }
 
         const shownStatus = ["pending", "assigned"];
 
@@ -85,13 +87,13 @@ class Home extends Component {
                     }
                     { props
                         .orders
-                        .filter(order => shownStatus.includes(order.status))
+                        .filter(order => shownStatus.includes(order.aasm_state))
                         .map(order => (
                             <MapMarker
                                 key={ order.id }
                                 type="client"
                                 coords={ order }
-                                status={ order.status }
+                                status={ order.aasm_state }
                                 calloutInfo={ order }
                             />
                         ))

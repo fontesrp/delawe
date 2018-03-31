@@ -15,8 +15,8 @@ class Profile extends Component {
 
         props.updateProfile({
             image: props.userImage,
-            name: props.userName,
-            contact: props.userContact,
+            name: props.userBusinessName,
+            contact: props.userName,
             email: props.userEmail,
             phone: props.userPhone,
             ...breakupAddress(props.userAddress)

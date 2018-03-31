@@ -1,5 +1,28 @@
 import * as types from "./types";
 import { joinAddress } from "../lib/util";
+import Api from "../lib/api";
+
+export const fetchUserData = function () {
+
+    return function (dispatch, getState) {
+
+        const { session } = getState();
+
+        Api
+            .get(`/users/${session.id}`, session)
+            .then(function (props) {
+
+                if (props.errors !== undefined) {
+                    return;
+                }
+
+                dispatch({
+                    type: types.UPDATE_USER,
+                    props
+                });
+            });
+    };
+};
 
 export const updateUser = function (userProps) {
 

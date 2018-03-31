@@ -6,13 +6,16 @@ import {
 } from "react-native";
 
 import OrderDetail from "./OrderDetail";
+import { fullName } from "../lib/util";
 
 const OrderInfo = function (props) {
 
     return (
         <View>
-            <Text style={ styles.number }>{ props.orderNumber }</Text>
-            <Text style={ styles.text }>{ props.courierName }</Text>
+            <Text style={ styles.number }>{ props.id }</Text>
+            <Text style={ styles.text }>
+                { fullName(props.courier_first_name, props.courier_last_name) }
+            </Text>
             <Text style={ styles.text }>{ props.address }</Text>
             <View style={ styles.details }>
                 <View>

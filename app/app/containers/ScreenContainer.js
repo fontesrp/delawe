@@ -8,7 +8,7 @@ import {
 import { Header } from "react-native-elements";
 
 import { ActionCreators } from "../actions";
-import { titleize } from "../lib/util";
+import { toCamelCase } from "../lib/util";
 
 class ScreenContainer extends Component {
 
@@ -77,7 +77,7 @@ const mapStateToProps = function (state) {
         }
 
         Object.keys(state[type]).forEach(function (prop) {
-            props[`${type}${titleize(prop)}`] = state[type][prop];
+            props[`${type}${toCamelCase(prop)}`] = state[type][prop];
         });
     });
 

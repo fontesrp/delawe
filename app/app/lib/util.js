@@ -1,5 +1,18 @@
+import dateFns from "date-fns";
+
 export const titleize = function (str) {
+    str = str || "";
     return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+export const toCamelCase = function (str) {
+    str = str || "";
+    return str.split("_").map(titleize).join("");
+};
+
+export const snakeToTitle = function (str) {
+    str = str || "";
+    return str.split("_").map(titleize).join(" ");
 };
 
 export const breakupAddress = function (address) {
@@ -19,7 +32,7 @@ export const joinAddress = function (comp) {
 
 export const patchOldState = function (state, action) {
 
-    const { props = {} } = action;
+    const { props = action } = action;
 
     const newState = { ...state };
 
@@ -36,4 +49,22 @@ export const toCurrency = function (num) {
 
 export const prettyNumber = function (num) {
     return toCurrency(num).replace("$", "");
+};
+
+export const fullName = function (...names) {
+    return names.map(titleize).join(" ");
+};
+
+export const prettyDate = function (isoDate) {
+    const date = new Date(isoDate);
+    return dateFns.format(date, "D MMM YYYY");
 }
+
+export const prettyTime = function (isoDate) {
+    const date = new Date(isoDate);
+    return dateFns.format(date, "HH:mm a");
+}
+
+export const prettyDateTime = function (isoDate) {
+    return `${prettyDate(isoDate)} ${prettyTime(isoDate)}`;
+};
