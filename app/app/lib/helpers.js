@@ -1,3 +1,5 @@
+import { Theme } from "react-native-clean-form";
+
 export const statusColor = function (status) {
     // Muted & Antique
     switch (status) {
@@ -11,4 +13,15 @@ export const statusColor = function (status) {
     case "canceled":
         return "#b2473e";
     }
+};
+
+export const setFormTheme = function () {
+    Theme.BaseInput.fontSize = 15;
+    Theme.BaseInput.lineHeight = 20;
+    Theme.Button.backgroundColor = "#335252";
+    Theme.Button.color = "#d4dde1";
+    Theme.Button.fontSize = 18;
+    Theme.Button.fontWeight = "bold";
+    Theme.FormGroup.height = 45;
+    Theme.Label.fontSize = 15;
 };

@@ -21,7 +21,10 @@ class Home extends Component {
 
         props.fetchCouriers();
         props.fetchOrders();
-        this.state = { modalVisible: false };
+
+        this.state = {
+            modalVisible: false
+        };
     }
 
     geoSuccess({ coords }) {
@@ -36,6 +39,12 @@ class Home extends Component {
     geoFail() {
         this.props.updateLocation({
             enableLocation: false
+        });
+    }
+
+    displayModal(show) {
+        this.setState({
+            modalVisible: show
         });
     }
 
@@ -101,8 +110,14 @@ class Home extends Component {
                         ))
                     }
                 </MapView>
-                <PickupModal visible={ this.state.modalVisible } />
-                <PickupBtn onPress={ () => this.setState({ modalVisible: true }) } />
+                <PickupModal
+                    visible={ this.state.modalVisible }
+                    hide={ this.displayModal.bind(this, false) }
+                    orders={ props.orders }
+                />
+                <PickupBtn
+                    onPress={ this.displayModal.bind(this, true) }
+                />
             </View>
         );
     }

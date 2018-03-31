@@ -4,22 +4,15 @@ import {
     Button,
     FieldsContainer,
     Fieldset,
-    Form,
-    Theme
+    Form
 } from "react-native-clean-form";
 import { Avatar } from "react-native-elements";
 import PhotoUpload from "react-native-photo-upload";
 
 import UserFormField from "./UserFormField";
+import { setFormTheme } from "../lib/helpers";
 
-Theme.BaseInput.fontSize = 15;
-Theme.BaseInput.lineHeight = 20;
-Theme.Button.backgroundColor = "#335252";
-Theme.Button.color = "#d4dde1";
-Theme.Button.fontSize = 18;
-Theme.Button.fontWeight = "bold";
-Theme.FormGroup.height = 45;
-Theme.Label.fontSize = 15;
+setFormTheme();
 
 const provinces = [
     { label: "Alberta", value: "AB" },
