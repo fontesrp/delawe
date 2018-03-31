@@ -4,19 +4,16 @@ import {
     Text,
     StyleSheet
 } from "react-native";
-import dateFns from "date-fns";
 
-import { prettyNumber } from "../lib/util";
+import { prettyNumber, prettyDateTime } from "../lib/util";
 
 const WalletItem = function (props) {
-
-    const date = new Date(`${props.date}T${props.time}Z`);
 
     return (
         <View style={ styles.container }>
             <View>
                 <Text style={ styles.date }>
-                    { dateFns.format(date, "D MMM YYYY HH:mm a") }
+                    { prettyDateTime(`${props.date}T${props.time}Z`) }
                 </Text>
                 <Text style={ styles.orderNumber }>
                     Order No: { props.orderNumber }

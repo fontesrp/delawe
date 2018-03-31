@@ -5,6 +5,7 @@ import nav from "./navigation";
 import orders from "./orders";
 import profile from "./profile";
 import session from "./session";
+import transactions from "./transactions";
 import user from "./user";
 import wallet from "./wallet";
 
@@ -14,6 +15,7 @@ const AppReducer = combineReducers({
     orders,
     profile,
     session,
+    transactions,
     user,
     wallet
 });

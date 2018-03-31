@@ -1,3 +1,5 @@
+import jwtDecode from "jwt-decode";
+
 import * as types from "./types";
 import Api from "../lib/api";
 
@@ -9,14 +11,16 @@ export const login = function (params) {
             .post("/tokens", params)
             .then(function (res) {
 
-                const type = (res.errors !== undefined)
-                    ? types.LOGIN_ERROR
-                    : types.LOGIN;
+                const props = { ...res };
 
-                const props = {
-                    ...params,
-                    ...res
-                };
+                let type;
+
+                if (res.errors === undefined) {
+                    type = types.LOGIN;
+                    Object.assign(props, jwtDecode(res.jwt));
+                } else {
+                    type = types.LOGIN_ERROR;
+                }
 
                 dispatch({
                     type,

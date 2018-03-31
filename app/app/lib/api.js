@@ -1,40 +1,36 @@
 class Api {
 
-    static setAuth(jwt) {
-        this.auth = jwt;
-    }
-
-    static headers() {
+    static headers(jwt) {
         return {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": this.auth
+            "Authorization": jwt
         };
     }
 
-    static get(route) {
-        return this.xhr(route, null, "GET");
+    static get(route, session = {}) {
+        return this.xhr(route, null, session, "GET");
     }
 
-    static put(route, params) {
-        return this.xhr(route, params, "PUT");
+    static put(route, params, session = {}) {
+        return this.xhr(route, params, session, "PUT");
     }
 
-    static post(route, params) {
-        return this.xhr(route, params, "POST");
+    static post(route, params, session = {}) {
+        return this.xhr(route, params, session, "POST");
     }
 
-    static delete(route, params) {
-        return this.xhr(route, params, "DELETE");
+    static delete(route, params, session = {}) {
+        return this.xhr(route, params, session, "DELETE");
     }
 
-    static async xhr(route, params, verb) {
+    static async xhr(route, params, session, verb) {
 
         const host = "http://localhost:3000";
         const url = `${host}${route}`;
 
         const options = {
-            headers: Api.headers(),
+            headers: Api.headers(session.jwt),
             method: verb
         };
 

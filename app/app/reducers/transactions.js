@@ -5,7 +5,7 @@ const initialState = [];
 
 const ordersReducer = createReducer(initialState, {
 
-    [types.UPDATE_ORDERS](state, action) {
+    [types.UPDATE_TRANSACTIONS](state, action) {
         return action.props;
     }
 });

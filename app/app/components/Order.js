@@ -8,20 +8,20 @@ import { Callout } from "react-native-maps";
 
 import StatusIcon from "./StatusIcon";
 import OrderInfo from "./OrderInfo";
-import { titleize } from "../lib/util";
+import { snakeToTitle } from "../lib/util";
 
 const Order = function (props) {
 
     return (
         <View style={ styles.container } >
             <View style={ styles.icon }>
-                <StatusIcon status={ props.status } />
+                <StatusIcon status={ props.aasm_state } />
             </View>
             <View style={ styles.info }>
                 <OrderInfo { ...props } />
             </View>
             <View style={ styles.status }>
-                <Text style={ styles.statusText }>{ titleize(props.status) }</Text>
+                <Text style={ styles.statusText }>{ snakeToTitle(props.aasm_state) }</Text>
             </View>
         </View>
     );

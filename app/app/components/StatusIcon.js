@@ -12,17 +12,18 @@ const StatusIcon = function (props) {
     };
 
     switch (props.status) {
-    case "canceled":
-        iconProps.name = "highlight-off";
-        break;
     case "pending":
         iconProps.name = "query-builder";
         break;
     case "assigned":
+    case "on_transit":
         iconProps.name = "directions-car";
         break;
     case "delivered":
         iconProps.name = "check-circle";
+        break;
+    case "canceled":
+        iconProps.name = "highlight-off";
         break;
     }
 

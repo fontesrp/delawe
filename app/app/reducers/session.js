@@ -2,9 +2,12 @@ import createReducer from "../lib/createReducer";
 import * as types from "../actions/types";
 
 const initialState = {
-    email: "",
     jwt: "",
-    errors: []
+    errors: [],
+    id: 0,
+    first_name: "",
+    last_name: "",
+    email: ""
 };
 
 const sessionReducer = createReducer(initialState, {
@@ -15,8 +18,7 @@ const sessionReducer = createReducer(initialState, {
 
         return {
             ...initialState,
-            email: props.email,
-            jwt: props.jwt
+            ...props
         };
     },
 

@@ -15,6 +15,13 @@ import { ActionCreators } from "../actions";
 
 class Drawer extends Component {
 
+    constructor(props) {
+
+        super(props);
+
+        props.fetchUserData();
+    }
+
     render() {
 
         const { user = {} } = this.props;
@@ -27,7 +34,7 @@ class Drawer extends Component {
                 >
                     <UserAvatar
                         image={ user.image }
-                        name={ user.name }
+                        name={ user.business_name }
                         onPress={ this.props.goToProfile }
                     />
                     <DrawerItems { ...this.props } />
