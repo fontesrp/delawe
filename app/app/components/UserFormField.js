@@ -2,9 +2,10 @@ import React from "react";
 import {
     FormGroup,
     Input,
-    Label,
-    Select
+    Label
 } from "react-native-clean-form";
+
+import FormSelect from "./FormSelect";
 
 const UserFormField = function (props) {
 
@@ -38,9 +39,9 @@ const UserFormField = function (props) {
         fProps.onValueChange = fProps.onChangeText;
         delete fProps.onChangeText;
 
-        // TODO: The picker from this Select is covering the whole screen
-        field = <Select { ...fProps } />;
-        break;
+        return (
+            <FormSelect { ...fProps } />
+        );
     }
 
     return (
