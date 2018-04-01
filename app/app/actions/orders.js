@@ -22,3 +22,10 @@ export const fetchOrders = function () {
             });
     };
 };
+
+export const newPickup = function (params) {
+
+    return function (dispatch, getState) {
+        console.log("newPickup", params);
+    };
+};

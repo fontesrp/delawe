@@ -46,6 +46,12 @@ class FormSelect extends Component {
 
         this.labels = labels;
         this.values = values;
+
+        if (nextProps.value !== this.state.value) {
+            this.setState({
+                value: nextProps.value
+            });
+        }
     }
 
     onSelect(idx) {

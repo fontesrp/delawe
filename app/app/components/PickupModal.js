@@ -130,24 +130,24 @@ class PickupModal extends Component {
 
     onSelect(type, item) {
 
-        let newState;
+        const newState = {};
 
         if (type === "orders") {
 
-            newState = {
-                selectedOrder: item
-            };
-
+            newState.selectedOrder = item;
             newState.selectedCourier = (item.courier_id)
                 ? this.props.couriers.find(cour => cour.id === item.courier_id)
                 : {};
 
+            newState.form = {
+                value: item.value,
+                ...breakupAddress(item.address)
+            };
+
             this.toggleOrders();
         } else {
 
-            newState = {
-                selectedCourier: item
-            };
+            newState.selectedCourier = item;
 
             this.toggleCouriers();
         }
@@ -170,10 +170,14 @@ class PickupModal extends Component {
         const { form } = state;
 
         this.props.onSave({
-            order: state.selectedOrder,
-            courier: state.selectedCourier,
+            order: {
+                ...state.selectedOrder
+            },
+            courier: {
+                ...state.selectedCourier
+            },
             form: {
-                value: form.value,
+                value: Number(form.value),
                 address: joinAddress(form)
             }
         });
@@ -183,9 +187,7 @@ class PickupModal extends Component {
 
         const { props } = this;
 
-        const { selectedOrder, selectedCourier } = this.state;
-        const { address = "" } = selectedOrder;
-        const addressProps = breakupAddress(address);
+        const { selectedOrder, selectedCourier, form } = this.state;
 
         const fields = [
             {
@@ -193,24 +195,24 @@ class PickupModal extends Component {
                 type: "number",
                 label: "Credits",
                 placeholder: "5.73",
-                value: String(selectedOrder.value || "")
+                value: String(form.value)
             }, {
                 name: "streetAddress",
                 label: "Street Address",
                 placeholder: "142 W Hastings St",
-                value: addressProps.streetAddress
+                value: form.streetAddress
             }, {
                 name: "city",
                 label: "City",
                 placeholder: "Vancouver",
-                value: addressProps.city
+                value: form.city
             }, {
                 name: "province",
                 type: "select",
                 label: "Province",
                 placeholder: "BC",
                 options: getProvinces(),
-                value: addressProps.province
+                value: form.province
             }
         ];
 
