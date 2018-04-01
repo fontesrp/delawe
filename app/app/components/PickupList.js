@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import {
     Animated,
     FlatList,
+    TouchableHighlight,
     StyleSheet
 } from "react-native";
 import { Divider } from "react-native-elements";
 
 import PickupOrder from "./PickupOrder";
+import PickupCourier from "./PickupCourier";
 
 class PickupList extends Component {
 
@@ -20,45 +22,66 @@ class PickupList extends Component {
         };
     }
 
-    expand() {
-        Animated.sequence([
+    sequence(params) {
+        return [
             Animated.timing(this.state.borderWidth, {
-                toValue: 5,
+                toValue: params.margin,
                 duration: 50
             }),
             Animated.timing(this.state.height, {
-                toValue: 180,
+                toValue: params.height,
                 duration: 200
             })
-        ]).start();
+        ];
+    }
+
+    expand() {
+        return Animated.sequence(
+            this.sequence({
+                margin: 5,
+                height: 180
+            })
+        );
     }
 
     squash() {
-        Animated.sequence([
-            Animated.timing(this.state.height, {
-                toValue: 0,
-                duration: 200
-            }),
-            Animated.timing(this.state.borderWidth, {
-                toValue: 0,
-                duration: 50
-            })
-        ]).start();
+        return Animated.sequence(
+            this.sequence({
+                margin: 0,
+                height: 0
+            }).reverse()
+        );
+    }
+
+    onPressItem(item) {
+        this.props.onSelect(this.props.type, item);
+    }
+
+    renderItem(param) {
+
+        const { props } = this;
+
+        const Item = (props.type === "orders")
+            ? PickupOrder
+            : PickupCourier;
+
+        return (
+            <TouchableHighlight
+                underlayColor="rgba(0, 0, 0, 0.5)"
+                onPress={ this.onPressItem.bind(this, param.item) }
+            >
+                <Item { ...param.item } />
+            </TouchableHighlight>
+        );
     }
 
     render() {
 
-        const { props } = this;
-
-        const containerStyle = (props.display)
-            ? styles.containerShow
-            : styles.containerHide;
-
         return (
             <Animated.View style={ [styles.container, { ...this.state }] }>
                 <FlatList
-                    data={ props.data }
-                    renderItem={ param => <PickupOrder { ...param.item } /> }
+                    data={ this.props.data }
+                    renderItem={ this.renderItem.bind(this) }
                     keyExtractor={ item => String(item.id) }
                     ItemSeparatorComponent={ () => <Divider style={ styles.divider } /> }
                 />
@@ -70,7 +93,9 @@ class PickupList extends Component {
 const styles = StyleSheet.create({
     container: {
         borderColor: "#d4dde1",
-        borderRadius: 10
+        borderRadius: 10,
+        marginLeft: 6,
+        marginRight: 6
     },
     divider: {
         height: 5,

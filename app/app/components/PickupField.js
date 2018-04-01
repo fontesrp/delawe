@@ -6,7 +6,7 @@ import {
     Select
 } from "react-native-clean-form";
 
-const UserFormField = function (props) {
+const PickupField = function (props) {
 
     const onChange = function (text) {
         if (typeof props.onInputChange === "function") {
@@ -26,12 +26,8 @@ const UserFormField = function (props) {
     case "text":
         field = <Input { ...fProps } />;
         break;
-    case "email":
-        field = <Input { ...fProps } keyboardType="email-address" />;
-        break;
-    case "phone":
-        // TODO: Format field as user types
-        field = <Input { ...fProps } keyboardType="phone-pad" returnKeyType="done" dataDetectorTypes="phoneNumber" />;
+    case "number":
+        field = <Input { ...fProps } keyboardType="numeric" returnKeyType="done" />;
         break;
     case "select":
 
@@ -39,7 +35,7 @@ const UserFormField = function (props) {
         delete fProps.onChangeText;
 
         // TODO: The picker from this Select is covering the whole screen
-        field = <Select { ...fProps } />;
+        field = <Select { ...fProps } cancelLabel="cancel" />;
         break;
     }
 
@@ -51,4 +47,4 @@ const UserFormField = function (props) {
     );
 };
 
-export default UserFormField;
+export default PickupField;

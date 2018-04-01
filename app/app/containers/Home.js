@@ -114,6 +114,7 @@ class Home extends Component {
                     visible={ this.state.modalVisible }
                     hide={ this.displayModal.bind(this, false) }
                     orders={ props.orders }
+                    couriers={ props.couriers }
                 />
                 <PickupBtn
                     onPress={ this.displayModal.bind(this, true) }

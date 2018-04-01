@@ -2,24 +2,36 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 
+import { fullName } from "../lib/util";
+
 const PickupSelector = function (props) {
 
     const iconProps = {
-        name: "arrow-drop-down",
-        color: "black",
+        name: "keyboard-arrow-down",
+        color: "#2d3033",
         style: styles.icon
     };
 
+    const { value, type } = props;
+
+    let { name } = props;
+
+    if (type === "courier" && value.first_name !== undefined) {
+        name = fullName(value.first_name, value.last_name);
+    } else if (type === "order" && value.id !== undefined) {
+        name = String(value.id);
+    }
+
     return (
         <Button
-            title={ props.name }
+            title={ name }
             rightIcon={ iconProps }
             textStyle={ styles.text }
             containerViewStyle={ styles.container }
             borderRadius={ 10 }
             underlayColor="rgba(0, 0, 0, 0.5)"
             backgroundColor="white"
-            color="black"
+            color="#2d3033"
             onPress={ props.onPress }
             outline
         />
@@ -36,8 +48,8 @@ const styles = StyleSheet.create({
         width: "10%"
     },
     container: {
-        marginLeft: 0,
-        marginRight: 0,
+        marginLeft: 6,
+        marginRight: 6,
         borderRadius: 10
     }
 });
