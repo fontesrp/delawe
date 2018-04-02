@@ -58,12 +58,12 @@ export const fullName = function (...names) {
 export const prettyDate = function (isoDate) {
     const date = new Date(isoDate);
     return dateFns.format(date, "D MMM YYYY");
-}
+};
 
 export const prettyTime = function (isoDate) {
     const date = new Date(isoDate);
     return dateFns.format(date, "HH:mm a");
-}
+};
 
 export const prettyDateTime = function (isoDate) {
     return `${prettyDate(isoDate)} ${prettyTime(isoDate)}`;
