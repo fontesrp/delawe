@@ -12,8 +12,8 @@ class Api {
         return this.xhr(route, null, session, "GET");
     }
 
-    static put(route, params, session = {}) {
-        return this.xhr(route, params, session, "PUT");
+    static patch(route, params, session = {}) {
+        return this.xhr(route, params, session, "PATCH");
     }
 
     static post(route, params, session = {}) {

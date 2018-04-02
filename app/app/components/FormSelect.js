@@ -71,8 +71,6 @@ class FormSelect extends Component {
 
     showSelector() {
 
-        console.log("here");
-
         const { labels } = this;
 
         const options = {

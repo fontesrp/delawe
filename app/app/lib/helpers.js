@@ -20,12 +20,16 @@ export const statusColor = function (status) {
 export const setFormTheme = function () {
     Theme.BaseInput.fontSize = 15;
     Theme.BaseInput.lineHeight = 20;
+    Theme.BaseInput.placeholderColor = "#d4dde1";
     Theme.Button.backgroundColor = "#335252";
     Theme.Button.color = "#d4dde1";
     Theme.Button.fontSize = 18;
     Theme.Button.fontWeight = "bold";
     Theme.FormGroup.height = 45;
+    Theme.FormGroup.borderColor = "#d4dde1";
+    Theme.Input.color = "#2d3033";
     Theme.Label.fontSize = 15;
+    Theme.Label.color = "#d4dde1";
 };
 
 export const getProvinces = function () {

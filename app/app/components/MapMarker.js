@@ -65,6 +65,8 @@ const MapMarker = function (props) {
 
     return (
         <Marker
+            ref={ props.addRef }
+            orderId={ props.calloutInfo.id }
             coordinate={ props.coords }
             title={ markerProps.title }
             description={ markerProps.description }

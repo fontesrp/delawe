@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import {
     Animated,
-    StyleSheet
+    StyleSheet,
+    Text
 } from "react-native";
 import Modal from "react-native-modal";
 import {
@@ -11,6 +12,7 @@ import {
     Fieldset,
     Form
 } from "react-native-clean-form";
+import { Icon } from "react-native-elements";
 
 import PickupSelector from "./PickupSelector";
 import PickupList from "./PickupList";
@@ -27,9 +29,12 @@ class PickupModal extends Component {
         super(props);
 
         this.state = {
+            key: Math.random(),
             displayOrders: false,
             displayCouriers: false,
             height: new Animated.Value(420),
+            padding: new Animated.Value(10),
+            successHeight: new Animated.Value(0),
             selectedOrder: {},
             selectedCourier: {},
             form: {
@@ -183,9 +188,62 @@ class PickupModal extends Component {
         });
     }
 
+    clearInputs() {
+        this.setState({
+            selectedOrder: {},
+            selectedCourier: {},
+            form: {
+                value: "",
+                streetAddress: "",
+                city: "",
+                province: ""
+            }
+        });
+    }
+
+    displaySuccess() {
+
+        const stretch = this.state.height._value;
+        const hide = 0;
+        const duration = 500;
+
+        Animated.parallel([
+            Animated.timing(this.state.height, {
+                toValue: 0,
+                duration
+            }),
+            Animated.timing(this.state.padding, {
+                toValue: 0,
+                duration
+            }),
+            Animated.timing(this.state.successHeight, {
+                toValue: stretch,
+                duration
+            })
+        ]).start();
+
+        setTimeout(() => {
+            this.props.hide();
+            this.props.clearRequests();
+            this.clearInputs();
+            setTimeout(() => {
+                this.state.height.setValue(stretch);
+                this.state.padding.setValue(10);
+                this.state.successHeight.setValue(hide);
+            }, 300);
+        }, duration + 300);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.visible && this.props.orderSaved !== nextProps.orderSaved) {
+            this.displaySuccess();
+        }
+    }
+
     render() {
 
         const { props } = this;
+        const { state } = this;
 
         const { selectedOrder, selectedCourier, form } = this.state;
 
@@ -221,7 +279,17 @@ class PickupModal extends Component {
                 isVisible={ props.visible }
                 onBackdropPress={ props.hide }
             >
-                <Animated.View style={ [styles.container, { height: this.state.height }] }>
+                <Animated.View style={ [styles.success, { height: state.successHeight }]}>
+                    <Icon
+                        name="check"
+                        size={ 64 }
+                        color="#d4dde1"
+                    />
+                    <Text style={ styles.successText }>Order saved</Text>
+                </Animated.View>
+                <Animated.View
+                    style={ [styles.container, { height: state.height, padding: state.padding }] }
+                >
                     <Form>
                         <FieldsContainer>
                             <PickupSelector
@@ -271,8 +339,18 @@ class PickupModal extends Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "white",
+        borderRadius: 10
+    },
+    success: {
+        backgroundColor: "#a4cabc",
         borderRadius: 10,
-        padding: 10
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    successText: {
+        color: "#d4dde1",
+        fontWeight: "bold",
+        fontSize: 32
     }
 });
 

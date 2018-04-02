@@ -5,6 +5,7 @@ import {
 } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
+import MapHome from "../components/MapHome";
 import MapMarker from "../components/MapMarker";
 import PickupBtn from "../components/PickupBtn";
 import PickupModal from "../components/PickupModal";
@@ -48,74 +49,25 @@ class Home extends Component {
         });
     }
 
+    onOrderSave(params) {
+        this.props.newPickup(params);
+    }
+
     render() {
 
         const { props } = this;
 
-        const store = {
-            coords: {
-                latitude: props.userLatitude,
-                longitude: props.userLongitude
-            },
-            name: props.userBusinessName,
-            address: props.userAddress
-        };
-
-        const region = {
-            ...store.coords,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421
-        };
-
-        const currLoc = props.userCurrentLocation;
-
-        const shownStatus = ["pending", "assigned"];
-
         return (
             <View style={ styles.container }>
-                <MapView
-                    provider={ PROVIDER_GOOGLE }
-                    region={ region }
-                    style={ styles.map }
-                    showsUserLocation={ (currLoc.latitude !== null) }
-                    showsTraffic
-                >
-                    <MapMarker
-                        type="store"
-                        coords={ store.coords }
-                        calloutInfo={ store }
-                    />
-                    { props
-                        .couriers
-                        .map(courier => (
-                            <MapMarker
-                                key={ courier.id }
-                                type="courier"
-                                coords={ courier }
-                                calloutInfo={ courier }
-                            />
-                        ))
-                    }
-                    { props
-                        .orders
-                        .filter(order => shownStatus.includes(order.aasm_state))
-                        .map(order => (
-                            <MapMarker
-                                key={ order.id }
-                                type="client"
-                                coords={ order }
-                                status={ order.aasm_state }
-                                calloutInfo={ order }
-                            />
-                        ))
-                    }
-                </MapView>
+                <MapHome { ...this.props } />
                 <PickupModal
                     visible={ this.state.modalVisible }
                     hide={ this.displayModal.bind(this, false) }
                     orders={ props.orders }
                     couriers={ props.couriers }
-                    onSave={ props.newPickup }
+                    onSave={ this.onOrderSave.bind(this) }
+                    orderSaved={ props.requestsOrderSaved }
+                    clearRequests={ props.clearRequests }
                 />
                 <PickupBtn
                     onPress={ this.displayModal.bind(this, true) }
@@ -128,10 +80,6 @@ class Home extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1
-    },
-    map: {
-        height: "92%",
-        width: "100%"
     }
 });
 
