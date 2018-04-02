@@ -4,10 +4,11 @@ import {
     Input,
     Label
 } from "react-native-clean-form";
+import { View, PanResponder } from "react-native";
 
 import FormSelect from "./FormSelect";
 
-const UserFormField = function (props) {
+const PickupField = function (props) {
 
     const onChange = function (text) {
         if (typeof props.onInputChange === "function") {
@@ -27,12 +28,8 @@ const UserFormField = function (props) {
     case "text":
         field = <Input { ...fProps } />;
         break;
-    case "email":
-        field = <Input { ...fProps } keyboardType="email-address" />;
-        break;
-    case "phone":
-        // TODO: Format field as user types
-        field = <Input { ...fProps } keyboardType="phone-pad" returnKeyType="done" dataDetectorTypes="phoneNumber" />;
+    case "number":
+        field = <Input { ...fProps } keyboardType="numeric" returnKeyType="done" />;
         break;
     case "select":
 
@@ -52,4 +49,4 @@ const UserFormField = function (props) {
     );
 };
 
-export default UserFormField;
+export default PickupField;

@@ -12,8 +12,10 @@ class Api {
         return this.xhr(route, null, session, "GET");
     }
 
-    static put(route, params, session = {}) {
-        return this.xhr(route, params, session, "PUT");
+    static patch(route, params, session = {}) {
+        console.log("Api.patch");
+        console.log(arguments);
+        return this.xhr(route, params, session, "PATCH");
     }
 
     static post(route, params, session = {}) {
@@ -47,6 +49,9 @@ class Api {
         } catch (e) {
             json = { errors: ["request error"] };
         }
+
+        console.log("Api.xhr");
+        console.log(json);
 
         return json;
     }

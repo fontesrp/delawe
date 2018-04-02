@@ -41,7 +41,6 @@ const LoginFields = function (props) {
                 style={ styles.input }
                 clearButtonMode="while-editing"
                 onChangeText={ onChangeText }
-                value={ props.values.password }
                 enablesReturnKeyAutomatically
                 secureTextEntry
                 clearTextOnFocus

@@ -4,35 +4,15 @@ import {
     Button,
     FieldsContainer,
     Fieldset,
-    Form,
-    Theme
+    Form
 } from "react-native-clean-form";
 import { Avatar } from "react-native-elements";
 import PhotoUpload from "react-native-photo-upload";
 
 import UserFormField from "./UserFormField";
+import { setFormTheme, getProvinces } from "../lib/helpers";
 
-Theme.BaseInput.fontSize = 15;
-Theme.BaseInput.lineHeight = 20;
-Theme.Button.backgroundColor = "#335252";
-Theme.Button.color = "#d4dde1";
-Theme.Button.fontSize = 18;
-Theme.Button.fontWeight = "bold";
-Theme.FormGroup.height = 45;
-Theme.Label.fontSize = 15;
-
-const provinces = [
-    { label: "Alberta", value: "AB" },
-    { label: "British Columbia", value: "BC" },
-    { label: "Manitoba", value: "MB" },
-    { label: "New Brunswick", value: "NB" },
-    { label: "Newfoundland and Labrador", value: "NL" },
-    { label: "Nova Scotia", value: "NS" },
-    { label: "Ontario", value: "ON" },
-    { label: "Prince Edward Island", value: "PE" },
-    { label: "Quebec", value: "QC" },
-    { label: "Saskatchewan", value: "SK" }
-];
+setFormTheme();
 
 const UserForm = function (props) {
 
@@ -72,7 +52,7 @@ const UserForm = function (props) {
                 type: "select",
                 label: "Province",
                 placeholder: "BC",
-                options: provinces
+                options: getProvinces()
             }
         ]
     };
