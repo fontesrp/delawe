@@ -62,7 +62,10 @@ class MapHome extends Component {
                 longitude: nextProps.requestsOrderSaved.longitude
             };
 
-            this.showMarkerCallout(nextProps.requestsOrderSaved.id);
+            if (nextProps.requestsOrderSaved.aasm_state !== "canceled") {
+                this.showMarkerCallout(nextProps.requestsOrderSaved.id);
+            }
+
             this.setState({ region });
         }
     }
@@ -120,6 +123,7 @@ class MapHome extends Component {
                             coords={ order }
                             status={ order.aasm_state }
                             calloutInfo={ order }
+                            onOrderEdit={ props.onOrderEdit }
                         />
                     ))
                 }

@@ -12,6 +12,12 @@ import { fullName, prettyDateTime } from "../lib/util";
 
 const MapMarker = function (props) {
 
+    const onOrderEdit = function () {
+        if (typeof props.onOrderEdit === "function") {
+            props.onOrderEdit(props.calloutInfo);
+        }
+    };
+
     const markerProps = {
         color: "",
         icon: "",
@@ -32,7 +38,7 @@ const MapMarker = function (props) {
     case "client":
         markerProps.color = statusColor(props.status);
         markerProps.icon = "shopping-cart";
-        markerProps.callout = <Callout><Order { ...calloutInfo } /></Callout>;
+        markerProps.callout = <Callout onPress={ onOrderEdit }><Order { ...calloutInfo } /></Callout>;
         break;
     case "courier":
         markerProps.color = "#335252";

@@ -201,6 +201,11 @@ class PickupModal extends Component {
         });
     }
 
+    onHide() {
+        this.props.hide();
+        this.clearInputs();
+    }
+
     displaySuccess() {
 
         const stretch = this.state.height._value;
@@ -223,9 +228,8 @@ class PickupModal extends Component {
         ]).start();
 
         setTimeout(() => {
-            this.props.hide();
+            this.onHide();
             this.props.clearRequests();
-            this.clearInputs();
             setTimeout(() => {
                 this.state.height.setValue(stretch);
                 this.state.padding.setValue(10);
@@ -277,9 +281,9 @@ class PickupModal extends Component {
         return (
             <Modal
                 isVisible={ props.visible }
-                onBackdropPress={ props.hide }
+                onBackdropPress={ this.onHide.bind(this) }
             >
-                <Animated.View style={ [styles.success, { height: state.successHeight }]}>
+                <Animated.View style={ [styles.success, { height: state.successHeight }] }>
                     <Icon
                         name="check"
                         size={ 64 }

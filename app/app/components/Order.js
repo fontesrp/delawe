@@ -1,8 +1,8 @@
 import React from "react";
 import {
-    View,
+    StyleSheet,
     Text,
-    StyleSheet
+    View
 } from "react-native";
 
 import StatusIcon from "./StatusIcon";
@@ -12,7 +12,7 @@ import { snakeToTitle } from "../lib/util";
 const Order = function (props) {
 
     return (
-        <View style={ styles.container } >
+        <View style={ styles.container }>
             <View style={ styles.icon }>
                 <StatusIcon status={ props.aasm_state } />
             </View>

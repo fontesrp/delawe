@@ -41,6 +41,9 @@ const newOrder = function (params) {
 
 const updateOrder = function (params) {
 
+    console.log("updateOrder");
+    console.log(params);
+
     const {
         order,
         action,
@@ -78,6 +81,9 @@ export const newPickup = function (params) {
 
     return function (dispatch, getState) {
 
+        console.log("newPickup");
+        console.log(params);
+
         const { session } = getState();
         const { order, form, courier } = params;
 
@@ -114,5 +120,20 @@ export const newPickup = function (params) {
         if (promise) {
             promise().then(() => fetchOrders()(dispatch, getState));
         }
+    };
+};
+
+export const cancelOrder = function (order) {
+
+    return function (dispatch, getState) {
+
+        const { session } = getState();
+
+        updateOrder({
+            order,
+            action: "cancel",
+            session,
+            dispatch
+        }).then(() => fetchOrders()(dispatch, getState));
     };
 };

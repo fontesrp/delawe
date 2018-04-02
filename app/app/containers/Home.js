@@ -6,9 +6,9 @@ import {
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 import MapHome from "../components/MapHome";
-import MapMarker from "../components/MapMarker";
 import PickupBtn from "../components/PickupBtn";
 import PickupModal from "../components/PickupModal";
+import OrderEditModal from "../components/OrderEditModal";
 
 class Home extends Component {
 
@@ -24,7 +24,9 @@ class Home extends Component {
         props.fetchOrders();
 
         this.state = {
-            modalVisible: false
+            pickupVisible: false,
+            orderEditVisible: false,
+            selectedOrder: {}
         };
     }
 
@@ -43,34 +45,56 @@ class Home extends Component {
         });
     }
 
-    displayModal(show) {
+    displayPickup(show) {
         this.setState({
-            modalVisible: show
+            pickupVisible: show
         });
     }
 
-    onOrderSave(params) {
-        this.props.newPickup(params);
+    displayOrderEdit(show) {
+        this.setState({
+            orderEditVisible: show
+        });
+    }
+
+    onOrderEdit(order) {
+        this.setState({
+            selectedOrder: order
+        });
+        this.displayOrderEdit(true);
     }
 
     render() {
 
-        const { props } = this;
+        const { props, state } = this;
 
         return (
             <View style={ styles.container }>
-                <MapHome { ...this.props } />
+                <MapHome
+                    { ...props }
+                    onOrderEdit={ this.onOrderEdit.bind(this) }
+                />
                 <PickupModal
-                    visible={ this.state.modalVisible }
-                    hide={ this.displayModal.bind(this, false) }
+                    visible={ state.pickupVisible }
+                    hide={ this.displayPickup.bind(this, false) }
                     orders={ props.orders }
                     couriers={ props.couriers }
-                    onSave={ this.onOrderSave.bind(this) }
+                    onSave={ props.newPickup }
                     orderSaved={ props.requestsOrderSaved }
                     clearRequests={ props.clearRequests }
                 />
+                <OrderEditModal
+                    visible={ state.orderEditVisible }
+                    hide={ this.displayOrderEdit.bind(this, false) }
+                    order={ state.selectedOrder }
+                    couriers={ props.couriers }
+                    updateOrder={ props.newPickup }
+                    cancelOrder={ props.cancelOrder }
+                    clearRequests={ props.clearRequests }
+                    orderSaved={ props.requestsOrderSaved }
+                />
                 <PickupBtn
-                    onPress={ this.displayModal.bind(this, true) }
+                    onPress={ this.displayPickup.bind(this, true) }
                 />
             </View>
         );
