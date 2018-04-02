@@ -1,21 +1,17 @@
 import React from "react";
 import {
-    StyleSheet,
+    View,
     Text,
-    View
+    StyleSheet
 } from "react-native";
 
-import StatusIcon from "./StatusIcon";
 import OrderInfo from "./OrderInfo";
 import { snakeToTitle } from "../lib/util";
 
-const Order = function (props) {
+const PickupOrder = function (props) {
 
     return (
-        <View style={ styles.container }>
-            <View style={ styles.icon }>
-                <StatusIcon status={ props.aasm_state } />
-            </View>
+        <View style={ styles.container } >
             <View style={ styles.info }>
                 <OrderInfo { ...props } />
             </View>
@@ -30,12 +26,9 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
         justifyContent: "space-evenly",
-        width: 350
-    },
-    icon: {
-        flex: 0.15,
-        justifyContent: "center",
-        alignItems: "center"
+        width: 350,
+        paddingTop: 5,
+        paddingBottom: 5
     },
     info: {
         flex: 0.65,
@@ -43,7 +36,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10
     },
     status: {
-        flex: 0.2,
+        flex: 0.35,
         justifyContent: "center",
         alignItems: "flex-start",
         borderLeftColor: "#d4dde1",
@@ -57,4 +50,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Order;
+export default PickupOrder;

@@ -12,6 +12,7 @@ export const UPDATE_LOCATION = "UPDATE_LOCATION";
 export const UPDATE_COURIERS = "UPDATE_COURIERS";
 
 export const UPDATE_ORDERS = "UPDATE_ORDERS";
+export const ORDER_SAVED = "ORDER_SAVED";
 
 export const UPDATE_TRANSACTIONS = "UPDATE_TRANSACTIONS";
 
@@ -24,3 +25,5 @@ export const CLEAR_CREDIT_CARD = "CLEAR_CREDIT_CARD";
 export const LOGIN = "LOGIN";
 export const LOGIN_ERROR = "LOGIN_ERROR";
 export const LOGOUT = "LOGOUT";
+
+export const CLEAR_REQUESTS = "CLEAR_REQUESTS";

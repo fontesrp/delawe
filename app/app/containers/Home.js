@@ -5,8 +5,10 @@ import {
 } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
-import MapMarker from "../components/MapMarker";
+import MapHome from "../components/MapHome";
 import PickupBtn from "../components/PickupBtn";
+import PickupModal from "../components/PickupModal";
+import OrderEditModal from "../components/OrderEditModal";
 
 class Home extends Component {
 
@@ -20,6 +22,12 @@ class Home extends Component {
 
         props.fetchCouriers();
         props.fetchOrders();
+
+        this.state = {
+            pickupVisible: false,
+            orderEditVisible: false,
+            selectedOrder: {}
+        };
     }
 
     geoSuccess({ coords }) {
@@ -37,69 +45,57 @@ class Home extends Component {
         });
     }
 
+    displayPickup(show) {
+        this.setState({
+            pickupVisible: show
+        });
+    }
+
+    displayOrderEdit(show) {
+        this.setState({
+            orderEditVisible: show
+        });
+    }
+
+    onOrderEdit(order) {
+        this.setState({
+            selectedOrder: order
+        });
+        this.displayOrderEdit(true);
+    }
+
     render() {
 
-        const { props } = this;
-
-        const store = {
-            coords: {
-                latitude: props.userLatitude,
-                longitude: props.userLongitude
-            },
-            name: props.userBusinessName,
-            address: props.userAddress
-        };
-
-        const region = {
-            ...store.coords,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421
-        };
-
-        const currLoc = props.userCurrentLocation;
-
-        const shownStatus = ["pending", "assigned"];
+        const { props, state } = this;
 
         return (
             <View style={ styles.container }>
-                <MapView
-                    provider={ PROVIDER_GOOGLE }
-                    region={ region }
-                    style={ styles.map }
-                    showsUserLocation={ (currLoc.latitude !== null) }
-                    showsTraffic
-                >
-                    <MapMarker
-                        type="store"
-                        coords={ store.coords }
-                        calloutInfo={ store }
-                    />
-                    { props
-                        .couriers
-                        .map(courier => (
-                            <MapMarker
-                                key={ courier.id }
-                                type="courier"
-                                coords={ courier }
-                                calloutInfo={ courier }
-                            />
-                        ))
-                    }
-                    { props
-                        .orders
-                        .filter(order => shownStatus.includes(order.aasm_state))
-                        .map(order => (
-                            <MapMarker
-                                key={ order.id }
-                                type="client"
-                                coords={ order }
-                                status={ order.aasm_state }
-                                calloutInfo={ order }
-                            />
-                        ))
-                    }
-                </MapView>
-                <PickupBtn />
+                <MapHome
+                    { ...props }
+                    onOrderEdit={ this.onOrderEdit.bind(this) }
+                />
+                <PickupModal
+                    visible={ state.pickupVisible }
+                    hide={ this.displayPickup.bind(this, false) }
+                    orders={ props.orders }
+                    couriers={ props.couriers }
+                    onSave={ props.newPickup }
+                    orderSaved={ props.requestsOrderSaved }
+                    clearRequests={ props.clearRequests }
+                />
+                <OrderEditModal
+                    visible={ state.orderEditVisible }
+                    hide={ this.displayOrderEdit.bind(this, false) }
+                    order={ state.selectedOrder }
+                    couriers={ props.couriers }
+                    updateOrder={ props.newPickup }
+                    cancelOrder={ props.cancelOrder }
+                    clearRequests={ props.clearRequests }
+                    orderSaved={ props.requestsOrderSaved }
+                />
+                <PickupBtn
+                    onPress={ this.displayPickup.bind(this, true) }
+                />
             </View>
         );
     }
@@ -108,10 +104,6 @@ class Home extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1
-    },
-    map: {
-        height: "92%",
-        width: "100%"
     }
 });
 

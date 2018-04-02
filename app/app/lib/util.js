@@ -68,3 +68,12 @@ export const prettyTime = function (isoDate) {
 export const prettyDateTime = function (isoDate) {
     return `${prettyDate(isoDate)} ${prettyTime(isoDate)}`;
 };
+
+export const secondsSince = function (isoDate) {
+    const date = new Date(isoDate);
+    return (Date.now() - date.valueOf()) / 1000;
+};
+
+export const minutesSince = function (isoDate) {
+    return secondsSince(isoDate) / 60;
+};
