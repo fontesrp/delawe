@@ -68,6 +68,19 @@ class MapHome extends Component {
         }
     }
 
+    onMarkerPress(props) {
+
+        const { coords } = props;
+
+        this.setState({
+            region: {
+                ...this.state.region,
+                latitude: coords.latitude,
+                longitude: coords.longitude
+            }
+        });
+    }
+
     render() {
 
         const { props } = this;
@@ -98,6 +111,7 @@ class MapHome extends Component {
                     type="store"
                     coords={ store.coords }
                     calloutInfo={ store }
+                    onPress={ this.onMarkerPress.bind(this) }
                 />
                 { props
                     .couriers
@@ -107,6 +121,7 @@ class MapHome extends Component {
                             type="courier"
                             coords={ courier }
                             calloutInfo={ courier }
+                            onPress={ this.onMarkerPress.bind(this) }
                         />
                     ))
                 }
@@ -122,6 +137,7 @@ class MapHome extends Component {
                             status={ order.aasm_state }
                             calloutInfo={ order }
                             onOrderEdit={ props.onOrderEdit }
+                            onPress={ this.onMarkerPress.bind(this) }
                         />
                     ))
                 }
