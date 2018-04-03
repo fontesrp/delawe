@@ -18,7 +18,7 @@ const ordersReducer = createReducer(initialState, {
         const { props } = action;
 
         const newState = state.slice();
-        newState[props.idx] = props.order;
+        newState[props.idx] = { ...props.order };
 
         return newState;
     }

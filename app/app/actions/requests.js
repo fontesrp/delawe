@@ -10,38 +10,33 @@ export const clearRequests = function () {
     };
 };
 
-const findOld = function (nail, haystack, name) {
+const findOld = function (nail, haystack) {
 
-    const props = {
-        idx: -1,
-        [name]: {}
-    };
+    let index = -1;
 
-    props[name] = haystack.find(function (item, idx) {
+    haystack.find(function (item, idx) {
 
         if (item.id === nail.id) {
-            props.idx = idx;
+            index = idx;
             return true;
         }
 
         return false;
     });
 
-    return props;
+    return index;
 };
 
 const sendNew = function (name, old, data, dispatch, insert, update) {
 
-    const props = findOld(data, old, name);
+    const props = {
+        idx: findOld(data, old),
+        [name]: { ...data }
+    };
 
-    let type;
-
-    if (props.idx === -1) {
-        props[name] = data;
-        type = insert;
-    } else {
-        type = update;
-    }
+    const type = (props.idx === -1)
+        ? insert
+        : update;
 
     dispatch({
         type,

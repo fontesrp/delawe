@@ -10,7 +10,8 @@ class Settings extends Component {
 
         const { props } = this;
 
-        props.clearSync(props.logout);
+        // props.clearSync(props.logout);
+        props.logout();
     }
 
     render() {
