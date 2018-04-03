@@ -11,6 +11,8 @@ export const UPDATE_LOCATION = "UPDATE_LOCATION";
 
 export const UPDATE_COURIERS = "UPDATE_COURIERS";
 
+export const UPDATE_STORE = "UPDATE_STORE";
+
 export const UPDATE_ORDERS = "UPDATE_ORDERS";
 export const ORDER_SAVED = "ORDER_SAVED";
 

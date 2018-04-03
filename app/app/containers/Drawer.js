@@ -15,13 +15,6 @@ import { ActionCreators } from "../actions";
 
 class Drawer extends Component {
 
-    constructor(props) {
-
-        super(props);
-
-        props.fetchUserData();
-    }
-
     render() {
 
         const { user = {} } = this.props;

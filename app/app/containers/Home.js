@@ -10,6 +10,8 @@ import PickupBtn from "../components/PickupBtn";
 import PickupModal from "../components/PickupModal";
 import OrderEditModal from "../components/OrderEditModal";
 
+import CourierMapHome from "../components/courier/MapHome";
+
 class Home extends Component {
 
     constructor(props) {
@@ -19,9 +21,6 @@ class Home extends Component {
         if (props.userEnableLocation) {
             navigator.geolocation.getCurrentPosition(this.geoSuccess.bind(this), this.geoFail.bind(this));
         }
-
-        props.fetchCouriers();
-        props.fetchOrders();
 
         this.state = {
             pickupVisible: false,
@@ -67,6 +66,14 @@ class Home extends Component {
     render() {
 
         const { props, state } = this;
+
+        if (props.userUserType === "courier") {
+            return (
+                <View style={ styles.container }>
+                    <CourierMapHome { ...props } />
+                </View>
+            );
+        }
 
         return (
             <View style={ styles.container }>

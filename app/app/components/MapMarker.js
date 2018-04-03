@@ -18,6 +18,12 @@ const MapMarker = function (props) {
         }
     };
 
+    const onPress = function () {
+        if (typeof props.onPress === "function") {
+            props.onPress(props);
+        }
+    };
+
     const markerProps = {
         color: "",
         icon: "",
@@ -76,6 +82,7 @@ const MapMarker = function (props) {
             coordinate={ props.coords }
             title={ markerProps.title }
             description={ markerProps.description }
+            onPress={ onPress }
         >
             <View style={ styles.container }>
                 <Icon name={ markerProps.icon } color="#d4dde1" containerStyle={ styles.iconContainer } />
