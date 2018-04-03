@@ -6,9 +6,11 @@ import {
     StyleSheet
 } from "react-native";
 import { Header } from "react-native-elements";
+import Notification from "react-native-in-app-notification";
 
 import { ActionCreators } from "../actions";
 import { toCamelCase } from "../lib/util";
+import NotificationBody from "../components/NotificationBody";
 
 class ScreenContainer extends Component {
 
@@ -18,6 +20,25 @@ class ScreenContainer extends Component {
         const { index } = route;
 
         return route.routes[index].key;
+    }
+
+    showNotification(props) {
+
+        const {
+            title,
+            message,
+            onPress = () => {},
+            icon = "notifications",
+            vibrate = false
+        } = props;
+
+        this.notification.show({
+            title,
+            message,
+            onPress,
+            icon,
+            vibrate
+        });
     }
 
     render() {
@@ -45,7 +66,19 @@ class ScreenContainer extends Component {
                     centerComponent={ centerProps }
                     outerContainerStyles={ styles.outerContainer }
                 />
-                { React.cloneElement(this.props.children, { ...this.props }) }
+                { React
+                    .cloneElement(
+                        this.props.children,
+                        {
+                            ...this.props,
+                            showNotification: this.showNotification.bind(this)
+                        }
+                    )
+                }
+                <Notification
+                    ref={ ref => this.notification = ref }
+                    notificationBodyComponent={ NotificationBody }
+                />
             </View>
         );
     }

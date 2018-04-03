@@ -4447,6 +4447,12 @@ react-native-image-resizer@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-image-resizer/-/react-native-image-resizer-1.0.0.tgz#d47e14943c37938e287fbd639e4db7ceb7fd8917"
 
+react-native-in-app-notification@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-in-app-notification/-/react-native-in-app-notification-2.2.0.tgz#690a9ef75bd0eecc15de77468f009a762c9f1748"
+  dependencies:
+    react-native-swipe-gestures "^1.0.2"
+
 react-native-maps@^0.20.1:
   version "0.20.1"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.20.1.tgz#b5247a9a26446b2e1ffc3f680db8ba6ccc960096"
@@ -4479,6 +4485,10 @@ react-native-safe-area-view@^0.7.0:
 react-native-simple-radio-button@^2.7.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/react-native-simple-radio-button/-/react-native-simple-radio-button-2.7.1.tgz#4a4a5cae903b6bc680c5e4bd5931948aa7608da0"
+
+react-native-swipe-gestures@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-swipe-gestures/-/react-native-swipe-gestures-1.0.2.tgz#914e1a72a94bc55b322b4622a01103ab879296dd"
 
 "react-native-tab-view@github:react-navigation/react-native-tab-view":
   version "0.0.74"
