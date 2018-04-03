@@ -137,3 +137,45 @@ export const cancelOrder = function (order) {
         }).then(() => fetchOrders()(dispatch, getState));
     };
 };
+
+export const collectOrder = function (order, cb) {
+
+    return function (dispatch, getState) {
+
+        const { session } = getState();
+
+        updateOrder({
+            order,
+            action: "pickup",
+            session,
+            dispatch
+        })
+            .then(() => fetchOrders()(dispatch, getState))
+            .then(function () {
+                if (typeof cb === "function") {
+                    cb();
+                }
+            });
+    }
+};
+
+export const deliverOrder = function (order, cb) {
+
+    return function (dispatch, getState) {
+
+        const { session } = getState();
+
+        updateOrder({
+            order,
+            action: "deliver",
+            session,
+            dispatch
+        })
+            .then(() => fetchOrders()(dispatch, getState))
+            .then(function () {
+                if (typeof cb === "function") {
+                    cb();
+                }
+            });
+    }
+};
