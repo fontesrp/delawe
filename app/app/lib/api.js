@@ -28,7 +28,7 @@ class Api {
 
     static async xhr(route, params, session, verb) {
 
-        const host = "http://192.168.1.73:3000";
+        const host = "http://localhost:3000";
         const url = `${host}${route}`;
 
         const options = {

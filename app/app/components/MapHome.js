@@ -10,7 +10,7 @@ class MapHome extends Component {
 
         super(props);
 
-        this.markers = [];
+        this.markers = {};
 
         this.state = {
             region: {
@@ -24,9 +24,7 @@ class MapHome extends Component {
 
     showMarkerCallout(orderId) {
 
-        this.markers = this.markers.filter(mkr => mkr !== null);
-
-        const marker = this.markers.find(mkr => mkr.props.orderId === orderId);
+        const marker = this.markers[orderId];
 
         if (marker) {
             marker.showCallout();
@@ -118,7 +116,7 @@ class MapHome extends Component {
                     .map(order => (
                         <MapMarker
                             key={ order.id }
-                            addRef={ mkr => this.markers.push(mkr) }
+                            addRef={ mkr => this.markers[order.id] = mkr }
                             type="client"
                             coords={ order }
                             status={ order.aasm_state }

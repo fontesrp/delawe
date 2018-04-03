@@ -6,6 +6,13 @@ import SettingsItem from "../components/SettingsItem";
 
 class Settings extends Component {
 
+    onLogout() {
+
+        const { props } = this;
+
+        props.clearSync(props.logout);
+    }
+
     render() {
 
         const { props } = this;
@@ -30,7 +37,7 @@ class Settings extends Component {
                 </List>
                 <Button
                     title="Logout"
-                    onPress={ this.props.logout }
+                    onPress={ this.onLogout.bind(this) }
                     color="#2d3033"
                     backgroundColor="white"
                     containerViewStyle={ styles.logout }

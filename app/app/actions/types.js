@@ -28,4 +28,11 @@ export const LOGIN = "LOGIN";
 export const LOGIN_ERROR = "LOGIN_ERROR";
 export const LOGOUT = "LOGOUT";
 
+export const INSERT_COURIER = "INSERT_COURIER";
+export const UPDATE_COURIER = "UPDATE_COURIER";
+export const INSERT_ORDER = "INSERT_ORDER";
+export const UPDATE_ORDER = "UPDATE_ORDER";
+export const INSERT_TRANSACTION = "INSERT_TRANSACTION";
+export const UPDATE_TRANSACTION = "UPDATE_TRANSACTION";
+
 export const CLEAR_REQUESTS = "CLEAR_REQUESTS";

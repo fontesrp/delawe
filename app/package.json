@@ -8,6 +8,8 @@
     "lib-config": "chmod +x fix_dependencies.sh && ./fix_dependencies.sh"
   },
   "dependencies": {
+    "action-cable-react-jwt": "^0.0.5",
+    "actioncable": "^5.1.6",
     "babel-core": "^6.26.0",
     "create-react-class": "^15.6.3",
     "date-fns": "^1.29.0",
