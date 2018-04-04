@@ -34,6 +34,13 @@ const sendNew = function (name, old, data, dispatch, insert, update) {
         [name]: { ...data }
     };
 
+    if (name === "order" && props[name].action) {
+        props.action = props[name].action.replace("!", "");
+        delete props[name].action;
+        props.prevAasmState = props[name].prev_aasm_state;
+        delete props[name].prev_aasm_state;
+    }
+
     const type = (props.idx === -1)
         ? insert
         : update;
@@ -59,6 +66,8 @@ export const receiveOrder = function (data) {
     return function (dispatch, getState) {
 
         const { orders } = getState();
+
+        console.log("receiveOrder data", data);
 
         sendNew("order", orders, data, dispatch, types.INSERT_ORDER, types.UPDATE_ORDER);
     };

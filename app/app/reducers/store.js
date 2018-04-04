@@ -7,6 +7,10 @@ const couriersReducer = createReducer(initialState, {
 
     [types.UPDATE_STORE](state, action) {
         return action.props;
+    },
+
+    [types.LOGOUT](state, action) {
+        return initialState;
     }
 });
 

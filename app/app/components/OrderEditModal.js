@@ -112,8 +112,6 @@ class OrderEditModal extends Component {
 
         const { props } = this;
 
-        console.log("unassign");
-
         props.updateOrder({
             order: { ...props.order },
             courier: {}

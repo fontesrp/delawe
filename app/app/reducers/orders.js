@@ -21,6 +21,10 @@ const ordersReducer = createReducer(initialState, {
         newState[props.idx] = { ...props.order };
 
         return newState;
+    },
+
+    [types.LOGOUT](state, action) {
+        return initialState;
     }
 });
 

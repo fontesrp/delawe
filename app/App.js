@@ -10,7 +10,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import AppWithNav, { navMiddleware } from "./app/navigation";
 import rootReducer from "./app/reducers";
 
-// console.disableYellowBox = true;
+console.disableYellowBox = true;
 
 const loggerMiddleware = createLogger({
     predicate: () => __DEV__

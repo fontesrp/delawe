@@ -14,6 +14,10 @@ const animationsReducer = createReducer(initialState, {
 
     [types.CLEAR_REQUESTS](state, action) {
         return initialState;
+    },
+
+    [types.LOGOUT](state, action) {
+        return initialState;
     }
 });
 

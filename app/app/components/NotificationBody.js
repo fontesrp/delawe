@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
         width: 80
     },
     textContainer: {
+        flex: 1,
         alignSelf: "center"
     },
     title: {

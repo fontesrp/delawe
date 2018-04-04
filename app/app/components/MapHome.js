@@ -46,8 +46,6 @@ class MapHome extends Component {
                 latitude: nextProps.userLatitude,
                 longitude: nextProps.userLongitude
             };
-
-            this.setState({ region });
         } else if (
             nextProps.requestsOrderSaved &&
             nextProps.requestsOrderSaved.latitude &&
@@ -63,7 +61,9 @@ class MapHome extends Component {
             if (nextProps.requestsOrderSaved.aasm_state !== "canceled") {
                 this.showMarkerCallout(nextProps.requestsOrderSaved.id);
             }
+        }
 
+        if (region) {
             this.setState({ region });
         }
     }

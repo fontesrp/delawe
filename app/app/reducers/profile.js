@@ -18,6 +18,10 @@ const userReducer = createReducer(initialState, {
     [types.UPDATE_PROFILE](state, action) {
 
         return patchOldState(state, action);
+    },
+
+    [types.LOGOUT](state, action) {
+        return initialState;
     }
 });
 

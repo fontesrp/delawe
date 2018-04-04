@@ -3,7 +3,6 @@ import ActionCable from "action-cable-react-jwt";
 const host = "localhost:3000";
 
 const createCable = function (jwt) {
-    console.log("jwt", jwt);
     return ActionCable.createConsumer(`ws://${host}/cable`, jwt);
 };
 

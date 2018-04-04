@@ -21,6 +21,10 @@ const couriersReducer = createReducer(initialState, {
         newState[props.idx] = props.courier;
 
         return newState;
+    },
+
+    [types.LOGOUT](state, action) {
+        return initialState;
     }
 });
 

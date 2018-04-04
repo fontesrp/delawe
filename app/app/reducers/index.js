@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 
 import couriers from "./couriers";
 import nav from "./navigation";
+import notifications from "./notifications";
 import orders from "./orders";
 import profile from "./profile";
 import requests from "./requests";
@@ -14,6 +15,7 @@ import wallet from "./wallet";
 const AppReducer = combineReducers({
     couriers,
     nav,
+    notifications,
     orders,
     profile,
     requests,

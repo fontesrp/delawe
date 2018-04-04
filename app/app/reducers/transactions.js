@@ -21,6 +21,10 @@ const transactionsReducer = createReducer(initialState, {
         newState[props.idx] = props.transaction;
 
         return newState;
+    },
+
+    [types.LOGOUT](state, action) {
+        return initialState;
     }
 });
 
