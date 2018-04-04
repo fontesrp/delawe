@@ -18,7 +18,7 @@ const navMiddleware = createReactNavigationReduxMiddleware(
 
 const addListener = createReduxBoundAddListener("root");
 
-class Nav extends React.Component {
+class Nav extends Component {
 
     render() {
 

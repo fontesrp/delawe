@@ -12,8 +12,34 @@ import {
 
 import UserAvatar from "../components/UserAvatar";
 import { ActionCreators } from "../actions";
+import { createCable, subscribe } from "../lib/actionCable";
 
 class Drawer extends Component {
+
+    constructor(props) {
+
+        super(props);
+
+        this.cable = createCable(props.session.jwt);
+        this.subscriptions = subscribe(this.cable, {
+            onCourierReceived: props.receiveCourier,
+            onOrderReceived: props.receiveOrder,
+            onTransactionReceived: props.receiveTransaction
+            // onUserReceived: props.receiveUser
+        });
+    }
+
+    componentWillUnmount() {
+
+        const { cable, subscriptions } = this;
+
+        Object.keys(subscriptions).forEach(key => subscriptions[key].unsubscribe());
+
+        cable.disconnect();
+
+        this.cable = null;
+        this.subscriptions = null;
+    }
 
     render() {
 
@@ -45,7 +71,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = function (state) {
     return {
-        user: state.user
+        user: state.user,
+        session: state.session
     };
 };
 

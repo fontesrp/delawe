@@ -40,6 +40,10 @@ const walletReducer = createReducer(initialState, {
             ...state,
             creditCard
         };
+    },
+
+    [types.LOGOUT](state, action) {
+        return initialState;
     }
 });
 

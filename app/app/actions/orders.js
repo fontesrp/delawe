@@ -41,9 +41,6 @@ const newOrder = function (params) {
 
 const updateOrder = function (params) {
 
-    console.log("updateOrder");
-    console.log(params);
-
     const {
         order,
         action,
@@ -80,9 +77,6 @@ const updateOrder = function (params) {
 export const newPickup = function (params) {
 
     return function (dispatch, getState) {
-
-        console.log("newPickup");
-        console.log(params);
 
         const { session } = getState();
         const { order, form, courier } = params;

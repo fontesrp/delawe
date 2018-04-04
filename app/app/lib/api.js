@@ -13,8 +13,6 @@ class Api {
     }
 
     static patch(route, params, session = {}) {
-        console.log("Api.patch");
-        console.log(arguments);
         return this.xhr(route, params, session, "PATCH");
     }
 
@@ -28,7 +26,7 @@ class Api {
 
     static async xhr(route, params, session, verb) {
 
-        const host = "http://192.168.1.73:3000";
+        const host = "http://localhost:3000";
         const url = `${host}${route}`;
 
         const options = {
@@ -49,9 +47,6 @@ class Api {
         } catch (e) {
             json = { errors: ["request error"] };
         }
-
-        console.log("Api.xhr");
-        console.log(json);
 
         return json;
     }

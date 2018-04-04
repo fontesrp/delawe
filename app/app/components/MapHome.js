@@ -10,7 +10,7 @@ class MapHome extends Component {
 
         super(props);
 
-        this.markers = [];
+        this.markers = {};
 
         this.state = {
             region: {
@@ -24,9 +24,7 @@ class MapHome extends Component {
 
     showMarkerCallout(orderId) {
 
-        this.markers = this.markers.filter(mkr => mkr !== null);
-
-        const marker = this.markers.find(mkr => mkr.props.orderId === orderId);
+        const marker = this.markers[orderId];
 
         if (marker) {
             marker.showCallout();
@@ -48,8 +46,6 @@ class MapHome extends Component {
                 latitude: nextProps.userLatitude,
                 longitude: nextProps.userLongitude
             };
-
-            this.setState({ region });
         } else if (
             nextProps.requestsOrderSaved &&
             nextProps.requestsOrderSaved.latitude &&
@@ -65,9 +61,24 @@ class MapHome extends Component {
             if (nextProps.requestsOrderSaved.aasm_state !== "canceled") {
                 this.showMarkerCallout(nextProps.requestsOrderSaved.id);
             }
+        }
 
+        if (region) {
             this.setState({ region });
         }
+    }
+
+    onMarkerPress(props) {
+
+        const { coords } = props;
+
+        this.setState({
+            region: {
+                ...this.state.region,
+                latitude: coords.latitude,
+                longitude: coords.longitude
+            }
+        });
     }
 
     render() {
@@ -100,6 +111,7 @@ class MapHome extends Component {
                     type="store"
                     coords={ store.coords }
                     calloutInfo={ store }
+                    onPress={ this.onMarkerPress.bind(this) }
                 />
                 { props
                     .couriers
@@ -109,6 +121,7 @@ class MapHome extends Component {
                             type="courier"
                             coords={ courier }
                             calloutInfo={ courier }
+                            onPress={ this.onMarkerPress.bind(this) }
                         />
                     ))
                 }
@@ -118,12 +131,13 @@ class MapHome extends Component {
                     .map(order => (
                         <MapMarker
                             key={ order.id }
-                            addRef={ mkr => this.markers.push(mkr) }
+                            addRef={ mkr => this.markers[order.id] = mkr }
                             type="client"
                             coords={ order }
                             status={ order.aasm_state }
                             calloutInfo={ order }
                             onOrderEdit={ props.onOrderEdit }
+                            onPress={ this.onMarkerPress.bind(this) }
                         />
                     ))
                 }

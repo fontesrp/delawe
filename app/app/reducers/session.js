@@ -7,7 +7,8 @@ const initialState = {
     id: 0,
     first_name: "",
     last_name: "",
-    email: ""
+    email: "",
+    sync: {}
 };
 
 const sessionReducer = createReducer(initialState, {
@@ -33,6 +34,23 @@ const sessionReducer = createReducer(initialState, {
         return {
             ...state,
             errors: action.props.errors
+        };
+    },
+
+    [types.SET_SYNC](state, action) {
+        return {
+            ...state,
+            sync: {
+                ...state.sync,
+                ...action.props
+            }
+        };
+    },
+
+    [types.CLEAR_SYNC](state, action) {
+        return {
+            ...state,
+            sync: initialState.sync
         };
     }
 });

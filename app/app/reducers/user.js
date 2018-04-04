@@ -16,6 +16,7 @@ const initialState = {
     phone: "",
     balance: 0.0,
     image: "https://www.48hourslogo.com/48hourslogo_data/2016/09/21/54195_1474457526.jpg",
+    // image: "http://media.oregonlive.com/ent_impact_dining/photo/christophersjpg-b7d6a6c10f66e17f.jpg",
     created_at: "",
     updated_at: "",
     // For app
@@ -41,6 +42,10 @@ const userReducer = createReducer(initialState, {
 
     [types.UPDATE_LOCATION](state, action) {
         return patchOldState(state, action);
+    },
+
+    [types.LOGOUT](state, action) {
+        return initialState;
     }
 });
 
