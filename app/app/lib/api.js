@@ -1,36 +1,36 @@
 class Api {
 
-    static headers() {
+    static headers(jwt) {
         return {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "dataType": "json"
+            "Authorization": jwt
         };
     }
 
-    static get(route) {
-        return this.xhr(route, null, "GET");
+    static get(route, session = {}) {
+        return this.xhr(route, null, session, "GET");
     }
 
-    static put(route, params) {
-        return this.xhr(route, params, "PUT");
+    static patch(route, params, session = {}) {
+        return this.xhr(route, params, session, "PATCH");
     }
 
-    static post(route, params) {
-        return this.xhr(route, params, "POST");
+    static post(route, params, session = {}) {
+        return this.xhr(route, params, session, "POST");
     }
 
-    static delete(route, params) {
-        return this.xhr(route, params, "DELETE");
+    static delete(route, params, session = {}) {
+        return this.xhr(route, params, session, "DELETE");
     }
 
-    static xhr(route, params, verb) {
+    static async xhr(route, params, session, verb) {
 
-        const host = "http://www.recipepuppy.com";
+        const host = "http://localhost:3000";
         const url = `${host}${route}`;
 
         const options = {
-            headers: Api.headers(),
+            headers: Api.headers(session.jwt),
             method: verb
         };
 
@@ -38,11 +38,17 @@ class Api {
             options.body = JSON.stringify(params);
         }
 
-        return fetch(url, options)
-            .then(res => res.json())
-            .catch(function () {
-                return { error: "request error" };
-            });
+        let response;
+        let json;
+
+        try {
+            response = await fetch(url, options);
+            json = await response.json();
+        } catch (e) {
+            json = { errors: ["request error"] };
+        }
+
+        return json;
     }
 }
 

@@ -46,31 +46,31 @@ class Home extends Component {
 
         if (!this.state.searching) {
             recipes = this.recipes().map(recipe => (
-                <View key={recipe.title}>
-                    <Image source={{uri: recipe.thumbnail}} style={styles.resultImage} />
-                    <Text style={styles.resultText}>{recipe.title}</Text>
+                <View key={ recipe.title }>
+                    <Image source={{ uri: recipe.thumbnail }} style={ styles.resultImage } />
+                    <Text style={ styles.resultText }>{ recipe.title }</Text>
                 </View>
             ));
         }
 
         return (
-            <View style={styles.scene}>
-                <View style={styles.searchSection}>
+            <View style={ styles.scene }>
+                <View style={ styles.searchSection }>
                     <TextInput
-                        style={styles.searchInput}
+                        style={ styles.searchInput }
                         returnKeyType="search"
                         placeholder="Ingredients (comma delimited)"
-                        onChangeText={ingredientsInput => this.setState({ ingredientsInput })}
-                        value={this.state.ingredientsInput}
+                        onChangeText={ ingredientsInput => this.setState({ ingredientsInput })}
+                        value={ this.state.ingredientsInput }
                     />
-                    <TouchableHighlight onPress={this.searchOnPress.bind(this)} style={styles.searchButton}>
+                    <TouchableHighlight onPress={ this.searchOnPress.bind(this)} style={ styles.searchButton }>
                         <Text>Fetch recipes</Text>
                     </TouchableHighlight>
                 </View>
-                <ScrollView style={styles.scrollSection}>
-                    {recipes}
+                <ScrollView style={ styles.scrollSection }>
+                    { recipes }
                 </ScrollView>
-                {(this.state.searching) ? <Text>Searching...</Text> : null}
+                { (this.state.searching) ? <Text>Searching...</Text> : null }
             </View>
         );
     }

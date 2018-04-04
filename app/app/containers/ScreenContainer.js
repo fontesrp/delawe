@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import {
-    View,
-    StyleSheet
+    StyleSheet,
+    View
 } from "react-native";
 import { Header } from "react-native-elements";
+import Notification from "react-native-in-app-notification";
 
 import { ActionCreators } from "../actions";
-import { titleize } from "../lib/util";
+import { toCamelCase } from "../lib/util";
+import handleNotifications from "../lib/notifications";
+import NotificationBody from "../components/NotificationBody";
 
 class ScreenContainer extends Component {
 
@@ -20,31 +23,63 @@ class ScreenContainer extends Component {
         return route.routes[index].key;
     }
 
+    showNotification(props) {
+
+        const {
+            title,
+            message,
+            onPress = () => {},
+            icon = "notifications",
+            vibrate = false
+        } = props;
+
+        this.notification.show({
+            title,
+            message,
+            onPress,
+            icon,
+            vibrate
+        });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        handleNotifications(this.props, nextProps, this.showNotification.bind(this));
+    }
+
     render() {
+
+        const { props } = this;
 
         const title = this.currentScreenTitle();
 
         const leftProps = {
             icon: "menu",
             color: "#2d3033",
-            onPress: this.props.openDrawer
+            onPress: props.openDrawer,
+            underlayColor: "rgba(0, 0, 0, 0.5)"
         };
 
         const centerProps = {
             style: styles.title,
             text: (title === "Home")
-                ? "DELWAE"
+                ? "DELAWE"
                 : title
         };
 
         return (
-            <View style={styles.container}>
+            <View style={ styles.container }>
                 <Header
-                    leftComponent={leftProps}
-                    centerComponent={centerProps}
-                    outerContainerStyles={styles.outerContainer}
+                    leftComponent={ leftProps }
+                    centerComponent={ centerProps }
+                    outerContainerStyles={ styles.outerContainer }
                 />
-                { React.cloneElement(this.props.children, { ...this.props }) }
+
+                { React.cloneElement(props.children, { ...props }) }
+
+                <Notification
+                    ref={ ref => this.notification = ref }
+                    notificationBodyComponent={ NotificationBody }
+                />
             </View>
         );
     }
@@ -76,7 +111,7 @@ const mapStateToProps = function (state) {
         }
 
         Object.keys(state[type]).forEach(function (prop) {
-            props[`${type}${titleize(prop)}`] = state[type][prop];
+            props[`${type}${toCamelCase(prop)}`] = state[type][prop];
         });
     });
 

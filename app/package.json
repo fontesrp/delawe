@@ -4,21 +4,37 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "lib-config": "chmod +x fix_dependencies.sh && ./fix_dependencies.sh"
   },
   "dependencies": {
+    "action-cable-react-jwt": "^0.0.5",
+    "actioncable": "^5.1.6",
     "babel-core": "^6.26.0",
+    "create-react-class": "^15.6.3",
+    "date-fns": "^1.29.0",
+    "jwt-decode": "^2.2.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.0-alpha.1",
     "react-native": "0.54.2",
+    "react-native-clean-form": "^0.5.0",
     "react-native-elements": "^0.19.0",
+    "react-native-fs": "^2.9.11",
+    "react-native-image-picker": "^0.26.7",
+    "react-native-image-resizer": "^1.0.0",
+    "react-native-in-app-notification": "^2.2.0",
     "react-native-maps": "^0.20.1",
+    "react-native-modal": "^5.4.0",
+    "react-native-photo-upload": "^1.2.0",
+    "react-native-simple-radio-button": "^2.7.1",
+    "react-native-swipe-gestures": "^1.0.2",
     "react-native-vector-icons": "^4.5.0",
     "react-navigation": "^1.5.8",
     "react-navigation-redux-helpers": "^1.0.3",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^5.9.1",
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {

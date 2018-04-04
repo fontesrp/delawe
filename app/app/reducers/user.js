@@ -1,28 +1,51 @@
 import createReducer from "../lib/createReducer";
+import * as types from "../actions/types";
+import { patchOldState, fullName } from "../lib/util";
 
 const initialState = {
-    name: "MyRestaurant",
-    image: "https://i.imgur.com/RrUk5JL.jpg",
-    address: "2075 Kingsway St, Vancouver, BC",
-    latitude: 49.2136074,
-    longitude: -122.8245812
+    // From API
+    id: 0,
+    first_name: "",
+    last_name: "",
+    email: "",
+    user_type: "",
+    address: "",
+    latitude: 0.0,
+    longitude: 0.0,
+    business_name: "",
+    phone: "",
+    balance: 0.0,
+    image: "https://www.48hourslogo.com/48hourslogo_data/2016/09/21/54195_1474457526.jpg",
+    // image: "http://media.oregonlive.com/ent_impact_dining/photo/christophersjpg-b7d6a6c10f66e17f.jpg",
+    created_at: "",
+    updated_at: "",
+    // For app
+    name: "",
+    enableLocation: true,
+    currentLocation: {
+        latitude: null,
+        longitude: null
+    }
 };
 
 const userReducer = createReducer(initialState, {
 
-    CHANGE_USER(state, action) {
+    [types.UPDATE_USER](state, action) {
 
-        const newUser = {
-            name: "OtherPlace",
-            image: "https://i.imgur.com/QSIXPaM.jpg",
-            address: "142 W Hastings St, Vancouver, BC",
-            latitude: 49.281964,
-            longitude: -123.1108491
-        };
+        const { props } = action;
 
-        return (state.name === "MyRestaurant")
-            ? newUser
-            : initialState;
+        props.balance = Number(props.balance);
+        props.name = fullName(props.first_name, props.last_name);
+
+        return patchOldState(state, props);
+    },
+
+    [types.UPDATE_LOCATION](state, action) {
+        return patchOldState(state, action);
+    },
+
+    [types.LOGOUT](state, action) {
+        return initialState;
     }
 });
 

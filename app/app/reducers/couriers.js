@@ -1,56 +1,30 @@
+import * as types from "../actions/types";
 import createReducer from "../lib/createReducer";
 
-const dt = new Date();
-
-const pad = num => String(num).padStart(2, "0");
-
-const today = `${dt.getUTCFullYear()}-${pad(dt.getUTCMonth() + 1)}-${pad(dt.getUTCDate())}`;
-
-const rand = max => pad(Math.floor(Math.random() * max));
-
-const randomTime = () => `${rand(24)}:${rand(60)}:${rand(60)}`;
-
-const initialState = [
-    {
-        id: 1,
-        name: "Cameron Guiney",
-        lastPickup: `${today} ${randomTime()}`,
-        latitude: 49.211575,
-        longitude: -122.841275
-    }, {
-        id: 2,
-        name: "Riley Rabun",
-        lastPickup: `${today} ${randomTime()}`,
-        latitude: 49.200976,
-        longitude: -122.823015
-    }, {
-        id: 3,
-        name: "Rogelio Frazee",
-        lastPickup: `${today} ${randomTime()}`,
-        latitude: 49.206234,
-        longitude: -122.810247
-    }, {
-        id: 4,
-        name: "Eleanore Fulcher",
-        lastPickup: `${today} ${randomTime()}`,
-        latitude: 49.188416,
-        longitude: -122.843258
-    }, {
-        id: 5,
-        name: "Bambi Didomenico",
-        lastPickup: `${today} ${randomTime()}`,
-        latitude: 49.190462,
-        longitude: -122.867761
-    }
-];
+const initialState = [];
 
 const couriersReducer = createReducer(initialState, {
 
-    FETCH_COURIERS(state, action) {
+    [types.UPDATE_COURIERS](state, action) {
+        return action.props;
+    },
 
-        const couriers = [];
+    [types.INSERT_COURIER](state, action) {
+        return state.concat([action.props.courier]);
+    },
 
-        return couriers;
+    [types.UPDATE_COURIER](state, action) {
+
+        const { props } = action;
+
+        const newState = state.slice();
+        newState[props.idx] = props.courier;
+
+        return newState;
+    },
+
+    [types.LOGOUT](state, action) {
+        return initialState;
     }
 });
 

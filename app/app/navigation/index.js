@@ -8,6 +8,7 @@ import {
 } from "react-navigation-redux-helpers";
 
 import AppNavigator from "../containers/AppNavigator";
+import Login from "../containers/Login";
 
 // Note: createReactNavigationReduxMiddleware must be run before createReduxBoundAddListener
 const navMiddleware = createReactNavigationReduxMiddleware(
@@ -17,15 +18,25 @@ const navMiddleware = createReactNavigationReduxMiddleware(
 
 const addListener = createReduxBoundAddListener("root");
 
-class Nav extends React.Component {
+class Nav extends Component {
+
     render() {
+
+        const { props } = this;
+
+        if (props.session.jwt === "") {
+            return (
+                <Login />
+            );
+        }
+
         return (
             <AppNavigator
-                navigation={addNavigationHelpers({
-                    dispatch: this.props.dispatch,
-                    state: this.props.nav,
+                navigation={ addNavigationHelpers({
+                    dispatch: props.dispatch,
+                    state: props.nav,
                     addListener
-                })}
+                }) }
             />
         );
     }
@@ -33,7 +44,8 @@ class Nav extends React.Component {
 
 const mapStateToProps = function (state) {
     return {
-        nav: state.nav
+        nav: state.nav,
+        session: state.session
     };
 };
 

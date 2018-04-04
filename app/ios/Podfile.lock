@@ -9,6 +9,10 @@ PODS:
   - react-native-google-maps (0.20.1):
     - GoogleMaps (= 2.5.0)
     - React
+  - react-native-image-picker (0.14.3):
+    - React
+  - react-native-image-resizer (1.0.0):
+    - React
   - react-native-maps (0.20.1):
     - React
   - React/Core (0.54.2):
@@ -39,11 +43,15 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - RNFS (2.9.11):
+    - React
   - yoga (0.54.2.React)
 
 DEPENDENCIES:
   - GoogleMaps
   - react-native-google-maps (from `../node_modules/react-native-maps`)
+  - react-native-image-picker (from `../node_modules/react-native-image-picker`)
+  - react-native-image-resizer (from `../node_modules/react-native-image-resizer`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - React/Core (from `../node_modules/react-native`)
   - React/RCTActionSheet (from `../node_modules/react-native`)
@@ -56,6 +64,7 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNFS (from `../node_modules/react-native-fs`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
 
 EXTERNAL SOURCES:
@@ -63,8 +72,14 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native
   react-native-google-maps:
     :path: ../node_modules/react-native-maps
+  react-native-image-picker:
+    :path: ../node_modules/react-native-image-picker
+  react-native-image-resizer:
+    :path: ../node_modules/react-native-image-resizer
   react-native-maps:
     :path: ../node_modules/react-native-maps
+  RNFS:
+    :path: ../node_modules/react-native-fs
   yoga:
     :path: ../node_modules/react-native/ReactCommon/yoga/yoga.podspec
 
@@ -72,9 +87,12 @@ SPEC CHECKSUMS:
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
   React: c237e42de9c70e5cac6eeb52b4cfd3a0910c1f00
   react-native-google-maps: 963fc78a5ac32dad3a726e4fa08b5307faa5cab2
+  react-native-image-picker: 42cfe2c8435d893414f8714a81e480313cb1412b
+  react-native-image-resizer: 04a3409e7d4ad646c4468671c69dec490def139c
   react-native-maps: 066c2afcc89e18726377bcc685315f989ca22449
+  RNFS: bbb1a64eb245763daf34aea86f97c97c4e85f74c
   yoga: 55da126afc384965b96bff46652464373b330add
 
-PODFILE CHECKSUM: 332398234a46008dc4810117f98b090a99b60628
+PODFILE CHECKSUM: ca4610b7c1170bdea18d70a4317b20f9385564e5
 
 COCOAPODS: 1.4.0
