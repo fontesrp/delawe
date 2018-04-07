@@ -36,7 +36,7 @@ const storeNotification = function (notification) {
 
 const courierNotification = function (storeBusinessName, notification) {
 
-    const { order, prevAasmState } = notification;
+    const { order, prevAasmState, action } = notification;
 
     let notifProps;
 
@@ -50,7 +50,7 @@ const courierNotification = function (storeBusinessName, notification) {
         notifProps = newOrderNotif;
         break;
     case "order_update":
-        if (notification.action) {
+        if (action) {
             switch (action) {
             case "assign":
                 notifProps = newOrderNotif;
@@ -107,9 +107,9 @@ const handleNotifications = function (prevProps, nextProps, showNotification) {
             icon: "shopping-cart",
             vibrate: true
         });
-
-        prevProps.clearNotifications();
     }
+
+    prevProps.clearNotifications();
 };
 
 export default handleNotifications;
