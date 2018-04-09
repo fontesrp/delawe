@@ -93,8 +93,6 @@ const handleNotifications = function (prevProps, nextProps, showNotification) {
         return;
     }
 
-    console.log("notification", notification);
-
     const { order } = notification;
     const notifProps = (prevProps.userUserType === "courier")
         ? courierNotification(prevProps.storeBusinessName, notification)

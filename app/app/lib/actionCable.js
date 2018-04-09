@@ -20,14 +20,15 @@ const subscribe = function (cable, props) {
         received: props.onTransactionReceived
     });
 
-    // const user = cable.subscriptions.create("UsersChannel", {
-    //     received: props.onUserReceived
-    // });
+    const user = cable.subscriptions.create("UsersChannel", {
+        received: props.onUserReceived
+    });
 
     return {
         courier,
         order,
-        transaction
+        transaction,
+        user
     };
 };
 

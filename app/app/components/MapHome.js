@@ -11,15 +11,7 @@ class MapHome extends Component {
         super(props);
 
         this.markers = {};
-
-        this.state = {
-            region: {
-                latitude: props.userLatitude,
-                longitude: props.userLongitude,
-                latitudeDelta: 0.02031,
-                longitudeDelta: 0.01053
-            }
-        };
+        this.map = null;
     }
 
     showMarkerCallout(orderId) {
@@ -31,18 +23,17 @@ class MapHome extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps, state) {
 
         const { props } = this;
-        let region;
+        let coords;
 
         if (
             props.userLatitude !== nextProps.userLatitude ||
             props.userLongitude !== nextProps.userLongitude
         ) {
 
-            region = {
-                ...this.state.region,
+            coords = {
                 latitude: nextProps.userLatitude,
                 longitude: nextProps.userLongitude
             };
@@ -52,8 +43,7 @@ class MapHome extends Component {
             nextProps.requestsOrderSaved.longitude
         ) {
 
-            region = {
-                ...this.state.region,
+            coords = {
                 latitude: nextProps.requestsOrderSaved.latitude,
                 longitude: nextProps.requestsOrderSaved.longitude
             };
@@ -63,8 +53,8 @@ class MapHome extends Component {
             }
         }
 
-        if (region) {
-            this.setState({ region });
+        if (coords) {
+            this.map.animateToCoordinate(coords, 300);
         }
     }
 
@@ -72,13 +62,12 @@ class MapHome extends Component {
 
         const { coords } = props;
 
-        this.setState({
-            region: {
-                ...this.state.region,
-                latitude: coords.latitude,
-                longitude: coords.longitude
-            }
-        });
+        console.log("coords", coords);
+
+        this.map.animateToCoordinate({
+            latitude: coords.latitude,
+            longitude: coords.longitude
+        }, 300);
     }
 
     render() {
@@ -98,12 +87,22 @@ class MapHome extends Component {
 
         const shownStatus = ["pending", "assigned"];
 
+        // region={ this.state.region }
+        const initialRegion = {
+            latitude: props.userLatitude,
+            longitude: props.userLongitude,
+            latitudeDelta: 0.0231,
+            longitudeDelta: 0.0106
+        };
+
         return (
             <MapView
+                ref={ map => this.map = map }
                 provider={ PROVIDER_GOOGLE }
-                region={ this.state.region }
+                initialRegion={ initialRegion }
                 style={ styles.map }
                 showsUserLocation={ (currLoc.latitude !== null) }
+                onMapReady={ () => this.map.animateToRegion(initialRegion, 500) }
                 showsTraffic
                 showsMyLocationButton
             >

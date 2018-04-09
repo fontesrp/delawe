@@ -5,6 +5,7 @@ import * as OrdersActions from "./orders";
 import * as ProfileActions from "./profile";
 import * as RequestsActions from "./requests";
 import * as SessionActions from "./session";
+import * as SocketsActions from "./sockets";
 import * as TransactionsActions from "./transactions";
 import * as UserActions from "./user";
 import * as WalletActions from "./wallet";
@@ -17,6 +18,7 @@ export const ActionCreators = {
     ...ProfileActions,
     ...RequestsActions,
     ...SessionActions,
+    ...SocketsActions,
     ...TransactionsActions,
     ...UserActions,
     ...WalletActions
