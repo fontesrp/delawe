@@ -87,7 +87,6 @@ class MapHome extends Component {
 
         const shownStatus = ["pending", "assigned"];
 
-        // region={ this.state.region }
         const initialRegion = {
             latitude: props.userLatitude,
             longitude: props.userLongitude,
