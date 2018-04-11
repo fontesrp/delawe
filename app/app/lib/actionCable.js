@@ -1,6 +1,6 @@
 import ActionCable from "action-cable-react-jwt";
 
-const host = "localhost:3000";
+const host = "delawe.rfapps.co";
 
 const createCable = function (jwt) {
     return ActionCable.createConsumer(`ws://${host}/cable`, jwt);
