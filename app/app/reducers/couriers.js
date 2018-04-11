@@ -25,6 +25,20 @@ const couriersReducer = createReducer(initialState, {
 
     [types.LOGOUT](state, action) {
         return initialState;
+    },
+
+    [types.UPDATE_COURIER_LOC](state, action) {
+
+        const { props } = action;
+        const newState = state.slice();
+
+        newState[props.idx] = {
+            ...newState[props.idx],
+            latitude: props.latitude,
+            longitude: props.longitude
+        };
+
+        return newState;
     }
 });
 

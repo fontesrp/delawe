@@ -1,14 +1,12 @@
 import React from "react";
-import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunkMiddleware from "redux-thunk";
 import { createLogger } from "redux-logger";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 
 import AppWithNav, { navMiddleware } from "./app/navigation";
-import rootReducer from "./app/reducers";
+import Sockets from "./app/containers/Sockets";
+import configureStore from "./app/lib/configureStore";
 
 console.disableYellowBox = true;
 
@@ -16,39 +14,21 @@ const loggerMiddleware = createLogger({
     predicate: () => __DEV__
 });
 
-const configureStore = function (initialState) {
-
-    const enhancer = compose(
-        applyMiddleware(
-            navMiddleware,
-            thunkMiddleware,
-            loggerMiddleware
-        )
-    );
-
-    const persistConfig = {
-        key: "root",
-        storage
-    };
-
-    const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-    const config = {
-        store: createStore(persistedReducer, initialState, enhancer)
-    };
-
-    config.persistor = persistStore(config.store);
-
-    return config;
-};
-
-const { store, persistor } = configureStore({});
+const { store, persistor } = configureStore({
+    initialState: {},
+    middlewares: {
+        nav: navMiddleware,
+        thunk: thunkMiddleware,
+        logger: loggerMiddleware
+    }
+});
 
 const App = function () {
     return (
         <Provider store={ store }>
             <PersistGate loading={ null } persistor={ persistor }>
                 <AppWithNav />
+                <Sockets />
             </PersistGate>
         </Provider>
     );

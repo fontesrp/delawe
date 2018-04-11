@@ -26,7 +26,7 @@ class Api {
 
     static async xhr(route, params, session, verb) {
 
-        const host = "http://localhost:3000";
+        const host = "http://delawe.rfapps.co";
         const url = `${host}${route}`;
 
         const options = {

@@ -21,7 +21,7 @@ const initialState = {
     updated_at: "",
     // For app
     name: "",
-    enableLocation: true,
+    enableLocation: false,
     currentLocation: {
         latitude: null,
         longitude: null
@@ -42,6 +42,13 @@ const userReducer = createReducer(initialState, {
 
     [types.UPDATE_LOCATION](state, action) {
         return patchOldState(state, action);
+    },
+
+    [types.LOGIN](state, action) {
+        return {
+            ...state,
+            enableLocation: true
+        };
     },
 
     [types.LOGOUT](state, action) {

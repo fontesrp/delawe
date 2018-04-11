@@ -12,38 +12,13 @@ import {
 
 import UserAvatar from "../components/UserAvatar";
 import { ActionCreators } from "../actions";
-import { createCable, subscribe } from "../lib/actionCable";
 
 class Drawer extends Component {
 
-    constructor(props) {
-
-        super(props);
-
-        this.cable = createCable(props.session.jwt);
-        this.subscriptions = subscribe(this.cable, {
-            onCourierReceived: props.receiveCourier,
-            onOrderReceived: props.receiveOrder,
-            onTransactionReceived: props.receiveTransaction
-            // onUserReceived: props.receiveUser
-        });
-    }
-
-    componentWillUnmount() {
-
-        const { cable, subscriptions } = this;
-
-        Object.keys(subscriptions).forEach(key => subscriptions[key].unsubscribe());
-
-        cable.disconnect();
-
-        this.cable = null;
-        this.subscriptions = null;
-    }
-
     render() {
 
-        const { user = {} } = this.props;
+        const { props } = this;
+        const { user = {} } = props;
 
         return (
             <ScrollView>
@@ -54,9 +29,9 @@ class Drawer extends Component {
                     <UserAvatar
                         image={ user.image }
                         name={ user.business_name }
-                        onPress={ this.props.goToProfile }
+                        onPress={ props.goToProfile }
                     />
-                    <DrawerItems { ...this.props } />
+                    <DrawerItems { ...props } />
                 </SafeAreaView>
             </ScrollView>
         );

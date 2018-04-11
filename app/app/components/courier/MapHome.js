@@ -16,17 +16,7 @@ class MapHome extends Component {
         super(props);
 
         this.markers = [];
-
-        const currLoc = props.userCurrentLocation;
-
-        this.state = {
-            region: {
-                latitude: currLoc.latitude || props.storeLatitude,
-                longitude: currLoc.longitude || props.storeLongitude,
-                latitudeDelta: 0.02031,
-                longitudeDelta: 0.01053
-            }
-        };
+        this.map = null;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -35,12 +25,7 @@ class MapHome extends Component {
         const nextLoc = nextProps.userCurrentLocation;
 
         if (prevLoc.latitude !== nextLoc.latitude || prevLoc.longitude !== nextLoc.longitude) {
-            this.setState({
-                region: {
-                    ...this.state.region,
-                    ...nextLoc
-                }
-            });
+            this.map.animateToCoordinate(nextLoc, 300);
         }
     }
 
@@ -239,13 +224,10 @@ class MapHome extends Component {
 
         const { coords } = props;
 
-        this.setState({
-            region: {
-                ...this.state.region,
-                latitude: coords.latitude,
-                longitude: coords.longitude
-            }
-        });
+        this.map.animateToCoordinate({
+            latitude: coords.latitude,
+            longitude: coords.longitude
+        }, 300);
     }
 
     render() {
@@ -258,12 +240,21 @@ class MapHome extends Component {
 
         const store = this.getStoreProps();
 
+        const initialRegion = {
+            latitude: currLoc.latitude || props.storeLatitude,
+            longitude: currLoc.longitude || props.storeLongitude,
+            latitudeDelta: 0.0231,
+            longitudeDelta: 0.0106
+        };
+
         return (
             <MapView
+                ref={ map => this.map = map }
                 provider={ PROVIDER_GOOGLE }
-                region={ this.state.region }
+                initialRegion={ initialRegion }
                 style={ styles.map }
                 showsUserLocation={ (currLoc.latitude !== null) }
+                onMapReady={ () => this.map.animateToRegion(initialRegion, 500) }
                 showsTraffic
                 showsMyLocationButton
             >
