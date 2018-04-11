@@ -23,7 +23,7 @@ class MapHome extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps, state) {
+    componentWillReceiveProps(nextProps) {
 
         const { props } = this;
         let coords;
