@@ -26,7 +26,7 @@ To reproduce the screens bellow, it's better to have DELAWE running on two simul
 If you are having trouble with Xcode or a red screen is showing, check the [Troubleshooting](#troubleshooting) section.
 
 # Usage
-DELAWE has two types of users: restaurants and couriers; and we are going to follow the lifecycle of an order through their cellphones.
+DELAWE has two types of users: restaurants and couriers. We are going to follow the lifecycle of an order through their cellphones.
 
 First, let's login as a restaurant. This screen should show up.
 
